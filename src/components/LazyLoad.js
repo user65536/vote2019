@@ -20,14 +20,12 @@ class LazyLoad extends Component {
         {
           this.state.load ? 
           <img style={{height: "100%", width: "100%"}} alt={alt} src={src} ></img> : 
-          <img style={{height: "100%", width: "100%"}} alt="" src={this.props.loadingSrc}></img> 
+          <img style={{height: "100%", width: "100%"}} alt="加载中" src={this.props.loadingSrc}></img> 
         }
       </>
     )
   }
   
 }
-
-
 export default LazyLoad;
 
