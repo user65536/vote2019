@@ -6,7 +6,7 @@ import Gallery from './pages/Gallery';
 import Detail from './pages/Detail';
 
 import './font/iconfont.css'
-import './index.styl'
+import './styles/reset.css'
 
 class App extends Component {
   render() {
