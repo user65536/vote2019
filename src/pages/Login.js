@@ -12,7 +12,7 @@ import logo from '../static/logo.png'
 class Login extends Component {
   state = {
     clientHeight: window.innerHeight + 'px',
-    warnText: ''
+    warnText: '用户名或密码不正确'
   }
   componentDidMount() {
     window.addEventListener('orientationchange',

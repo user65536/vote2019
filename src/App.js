@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
+import {HashRouter as Router, Route, Switch} from 'react-router-dom'
 
 import Login from './pages/Login';
 import Gallery from './pages/Gallery';
@@ -14,7 +14,7 @@ class App extends Component {
       <Router>
         <>
           <Switch>
-            <Route path="/" exact component={Login}></Route>
+            <Route path="/" exact component={Gallery}></Route>
             <Route path="/login" component={Login}></Route>
             <Route path="/gallery" component={Gallery}></Route>
             <Route path="/detail" component={Detail}></Route>

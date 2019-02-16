@@ -1,3 +1,12 @@
+/**
+ * @version 1.0.0
+ * @author trage
+ * @description 图片预加载效果 组件返回一个宽高100%的img标签
+ * @param src 图片地址
+ * @param alt 图片描述
+ * @param loadingSrc 加载时显示的图片地址
+ */
+
 import React, { Component } from 'react';
 
 class LazyLoad extends Component {
