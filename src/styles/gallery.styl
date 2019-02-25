@@ -1,7 +1,30 @@
-.card-wrap 
-  margin 30px
-  width 200px
-  // height 250px
-  border-radius 8px
-  box-shadow 0px 0px 12px 0px rgba(0,0,0,.5)
-  overflow hidden
+
+.wrapper-gallery
+  .content
+    width 90%
+    padding 0 5%
+    display flex
+    flex-direction row
+    justify-content space-between
+    flex-wrap wrap
+    .card-wrap
+      margin 12px 4px 0
+      border-radius 8px
+      box-shadow 0px 0px 12px 0px rgba(0,0,0,.5)
+      overflow hidden
+
+@media(max-width 500px)
+  .wrapper-gallery
+    .content
+      .card-wrap
+        flex 1 0 150px
+@media(min-width 500px) and (max-width 850px)
+  .wrapper-gallery
+    .content
+      .card-wrap
+        flex 1 0 250px
+@media(min-width 850px)
+  .wrapper-gallery
+    .content
+      .card-wrap
+        flex 0 0 250px
