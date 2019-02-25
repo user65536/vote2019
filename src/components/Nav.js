@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import '../styles/nav.styl'
 
-class c extends Component {
+class Nav extends Component {
 
   render () {
     return (
@@ -31,4 +31,4 @@ class c extends Component {
 
 }
 
-export default c;
+export default Nav;
