@@ -20,7 +20,7 @@ class Login extends Component {
   }
   render () {
     return (
-      <div className="wrapper" style={{height: this.state.clientHeight}}>
+      <div className="wrapper-login" style={{height: this.state.clientHeight}}>
         <div className="nav">
           <img src={logo} alt="北邮WIN" className="logo"/>
           <span className="title">第{"二"}届大创展</span>
