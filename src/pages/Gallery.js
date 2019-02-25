@@ -26,6 +26,16 @@ class Gallery extends Component {
         ],
         "vote": 10,
         "view": 900
+      },
+      {
+        "id": "3",
+        "name": "基于视频流的运动物",
+        "img": [
+          "http://img0.imgtn.bdimg.com/it/u=1664316807,3401349985&fm=26&gp=0.jpg",
+          "213123"
+        ],
+        "vote": 10,
+        "view": 900
       }
     ]
   }
