@@ -14,10 +14,10 @@ class App extends Component {
       <Router>
         <>
           <Switch>
-            <Route path="/" exact component={Gallery}></Route>
+            <Route path="/" exact component={Detail}></Route>
             <Route path="/login" component={Login}></Route>
             <Route path="/gallery" component={Gallery}></Route>
-            <Route path="/detail" component={Detail}></Route>
+            <Route path="/detail/:id" component={Detail}></Route>
             {/* <Route path="/" component={NotFound}></Route> */}
           </Switch>
         </>
