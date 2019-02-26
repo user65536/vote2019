@@ -10,7 +10,6 @@ class ProjectCard extends Component {
   
   render () {
     let {img, name, vote, view} = this.props.info
-    console.log(this.props)
     return (
       <div className="card">
         <div className="img-wrap">
