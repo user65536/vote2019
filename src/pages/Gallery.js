@@ -39,7 +39,7 @@ class Gallery extends Component {
         "view": 900
       },
       {
-        "id": "3",
+        "id": "4",
         "name": "基于视频流的运动物",
         "img": [
           "https://www.meansky.cn/picture/bupt4.jpg",
@@ -49,7 +49,7 @@ class Gallery extends Component {
         "view": 900
       },
       {
-        "id": "3",
+        "id": "5",
         "name": "基于视频流的运动物",
         "img": [
           "https://www.meansky.cn/picture/bupt5.jpg",
@@ -58,7 +58,7 @@ class Gallery extends Component {
         "vote": 10,
         "view": 900
       },{
-        "id": "3",
+        "id": "6",
         "name": "基于视频流的运动物",
         "img": [
           "https://www.meansky.cn/picture/bupt1.jpg",
@@ -68,7 +68,7 @@ class Gallery extends Component {
         "view": 900
       },
       {
-        "id": "3",
+        "id": "7",
         "name": "基于视频流的运动物",
         "img": [
           "https://www.meansky.cn/picture/bupt2.jpg",
