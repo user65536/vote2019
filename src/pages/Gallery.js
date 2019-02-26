@@ -10,9 +10,9 @@ class Gallery extends Component {
   state = {
     projects: [{
         "id": "1",
-        "name": "基于视频流的运动物体检测与追踪基于视频流的",
+        "name": "基于视频流的运动物体检测与追踪基于视频流",
         "img": [
-          "http://img4.imgtn.bdimg.com/it/u=3888742839,2332987673&fm=26&gp=0.jpg",
+          "https://www.meansky.cn/picture/bupt1.jpg",
           "2313"
         ],
         "vote": 1000,
@@ -22,7 +22,7 @@ class Gallery extends Component {
         "id": "2",
         "name": "基于视频流的运动物",
         "img": [
-          "http://img0.imgtn.bdimg.com/it/u=1664316807,3401349985&fm=26&gp=0.jpg",
+          "https://www.meansky.cn/picture/bupt2.jpg",
           "213123"
         ],
         "vote": 10,
@@ -32,7 +32,7 @@ class Gallery extends Component {
         "id": "3",
         "name": "基于视频流的运动物",
         "img": [
-          "http://img0.imgtn.bdimg.com/it/u=1664316807,3401349985&fm=26&gp=0.jpg",
+          "https://www.meansky.cn/picture/bupt3.jpg",
           "213123"
         ],
         "vote": 10,
@@ -42,7 +42,7 @@ class Gallery extends Component {
         "id": "3",
         "name": "基于视频流的运动物",
         "img": [
-          "http://img0.imgtn.bdimg.com/it/u=1664316807,3401349985&fm=26&gp=0.jpg",
+          "https://www.meansky.cn/picture/bupt4.jpg",
           "213123"
         ],
         "vote": 10,
@@ -52,7 +52,7 @@ class Gallery extends Component {
         "id": "3",
         "name": "基于视频流的运动物",
         "img": [
-          "http://img0.imgtn.bdimg.com/it/u=1664316807,3401349985&fm=26&gp=0.jpg",
+          "https://www.meansky.cn/picture/bupt5.jpg",
           "213123"
         ],
         "vote": 10,
@@ -61,7 +61,7 @@ class Gallery extends Component {
         "id": "3",
         "name": "基于视频流的运动物",
         "img": [
-          "http://img0.imgtn.bdimg.com/it/u=1664316807,3401349985&fm=26&gp=0.jpg",
+          "https://www.meansky.cn/picture/bupt1.jpg",
           "213123"
         ],
         "vote": 10,
@@ -71,7 +71,7 @@ class Gallery extends Component {
         "id": "3",
         "name": "基于视频流的运动物",
         "img": [
-          "http://img0.imgtn.bdimg.com/it/u=1664316807,3401349985&fm=26&gp=0.jpg",
+          "https://www.meansky.cn/picture/bupt2.jpg",
           "213123"
         ],
         "vote": 10,
@@ -102,7 +102,11 @@ class Gallery extends Component {
             })
           }
         </div>
-        
+        <div className="footer">
+          <span className="line-left">---------------------</span>
+          <span className="bottom">见底了</span>
+          <span className="line-right">---------------------</span>
+        </div>
       </div>
     )
   }
