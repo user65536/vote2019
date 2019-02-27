@@ -47,11 +47,13 @@
     .content-pc
       padding 0 10%
       .top
+        display flex
         margin-top 72px
         .picture
+          flex 0 4 auto
           position relative
           width 414px
-          height 310px
+          // height 310px
           box-shadow 0 0 8px 0px rgba(0, 0, 0, .1)
           .title
             position absolute
@@ -68,16 +70,105 @@
               right 0
               bottom 0
               padding 8px 16px 0
+        .right
+          display flex
+          flex-direction column
+          justify-content flex-start
+          .about
+            display flex
+            flex-direction column
+            justify-content space-between
+            flex 1 
+            .info
+              flex 1 1 
+              .name,.iconfont
+                vertical-align middle
+                color #8B8B8B
+              .value
+                display table-cell
+                vertical-align middle
+          .vote-now
+            display inline-block
+            flex 0 0 43px
+            border none 
+            outline none
+            box-shadow 1px 3px 11px rgba(0, 0, 0, .22)
+            background linear-gradient(-45deg, #4D93F1, #0A73FF)
+            border-radius 6px
+            font-size 16px
+            letter-spacing 8px
+            color #ffffff
+            transition all ease-out .4s
+            &:hover
+              color #eee
+              box-shadow 1px 3px 11px rgba(0, 0, 0, .6)
+      .intro-title
+        margin-top 48px
+        color #424242
+        font-size 24px
+        padding-bottom 4px
+        border-bottom 1px solid #707070
+      .intro
+        margin-top 24px
+        font-size 18px
+        line-height 32px
+        color #424242
 
 
 
-@media(max-width 500px)
+
+
+@media(max-width 599px)
   .content-pc
     display none
 
-@media(min-width 500px) and (max-width 850px)
+@media (min-width 600px) and (max-width 849px)
   .content-mobile
     display none
+  .content-pc
+    .right
+      margin-left 4%
+      flex 1 4 auto
+      .about
+        .info
+          font-size 16px
+          .value
+            padding-left 12px
+          .name
+            display none
+          .iconfont
+            display table-cell
+            font-size 24px
+          .icon-small
+            font-size 20px
+    .vote-now
+      margin-top 24px
+
+
 @media(min-width 850px)
   .content-mobile
     display none
+  .content-pc
+    .right
+      margin-left 6%
+      flex 0 4 auto
+      .about
+        width auto
+        .info
+          font-size 18px
+          .iconfont
+            display none
+          .name
+            display table-cell
+            width 80px
+          .value
+            padding-left 18px
+    .vote-now
+      margin-top 12px     
+
+@media(min-width 600px) and (max-width 710px)
+  .content-pc
+    .top
+      .picture
+        .title
+          font-size 12px
