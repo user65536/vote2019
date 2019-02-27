@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 
 import Nav from '../components/Nav';
 import LazyLoad from '../components/LazyLoad';
-
+import Toast from '../components/Toast'
 import loadImg from '../static/load.png'
 
 import '../styles/detail.styl'
 
 class Detail extends Component {
   state = {
-    blur: false,
+    blur: true,
     info: {
       "category":1,
       "id":"DZ01",
@@ -112,6 +112,7 @@ class Detail extends Component {
               <div className="intro">{this.state.info.intro}</div>
             </div>
           </div>
+          <Toast></Toast>
         </div>
       </>
     )
