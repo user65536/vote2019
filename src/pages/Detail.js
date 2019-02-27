@@ -16,7 +16,7 @@ class Detail extends Component {
       "img": "https://www.meansky.cn/picture/bupt6.jpg",
       "intro":"随着智慧城市建设日新月异的发展，被称为城市超级大动脉的地下综合管廊的建设也不断增多。目前，我国的城市地下综合管廊已在31个省、直辖市和自治区的167个城市中建设或投入运行。但是，单纯依靠技术人员难以实现对地下综合管廊的高效、高精度及低成本的巡检。因此，我国不断增加的地下综合管廊亟需精准高效的智能巡检设备。本文将研制智能巡检机器人，实现地下综合管廊场景的3D重建及认知，完成地下综合管廊的精准高效巡检。随着智慧城市建设日新月异的发展，被称为城市超级大动脉的地下综合管廊的建设也不断增多。目前，我国的城市地下综合管廊已在31个省、直辖市和自治区的167个城市中建设或投入运行。但是，单纯依靠技术人员难以实现对地下综合管廊的高效、高精度及低成本的巡检。因此，我国不断增加的地下综合管廊亟需精准高效的智能巡检设备。本文将研制智能巡检机器人，实现地下综合管廊场景的3D重建及认知，完成地下综合管廊的精准高效巡检。随着智慧城市建设日新月异的发展，被称为城市超级大动脉的地下综合管廊的建设也不断增多。目前，我国的城市地下综合管廊已在31个省、直辖市和自治区的167个城市中建设或投入运行。但是，单纯依靠技术人员难以实现对地下综合管廊的高效、高精度及低成本的巡检。因此，我国不断增加的地下综合管廊亟需精准高效的智能巡检设备。本文将研制智能巡检机器人，实现地下综合管廊场景的3D重建及认知，完成地下综合管廊的精准高效巡检。",
       "leader":"苑立彬",
-      "member":"王翰华 刘炜伦 莫耀凯 袁华宇",
+      "member":"王翰华华 刘炜伦伦 莫耀凯凯 袁华宇",
       "name":"基于多传感器融合的地下综合管廊智能巡检机",
       "school":"电子工程学院",
       "teacher":"焦继超",
@@ -44,10 +44,22 @@ class Detail extends Component {
                     <span className="iconfont icon-toupiao"></span>
                     <span className="value vote-num">{this.state.info.voteNumber}</span>
                   </div>
-                  <div className="item view">
+                  <div className="item leader">
+                    <span className="iconfont icon-yonghu"></span>
+                    <span className="value">{this.state.info.leader}</span>
+                  </div>
+                  <div className="item teacher">
+                    <span className="iconfont icon-12"></span>
+                    <span className="value">{this.state.info.teacher}</span>
+                  </div>
+                  <div className="item team">
+                    <span className="iconfont icon-chengyuan"></span>
+                    <span className="value">{this.state.info.member}</span>
+                  </div>
+                  {/* <div className="item view">
                     <span className="iconfont icon-liulan"></span>
                     <span className="value view-num">{this.state.info.view}</span>
-                  </div>
+                  </div> */}
                 </div>
                 <div className="intro">{this.state.info.intro} </div>
               </div>
