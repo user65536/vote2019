@@ -9,6 +9,7 @@ import '../styles/detail.styl'
 
 class Detail extends Component {
   state = {
+    blur: false,
     info: {
       "category":1,
       "id":"DZ01",
@@ -30,7 +31,7 @@ class Detail extends Component {
     return (
       <>
         <div className="wrapper-detail">
-          <div className="blur-wrap">
+          <div className={`blur-wrap ${this.state.blur ? 'blur' : ''}`}>
             <Nav></Nav>
             <div className="content-mobile">
               <div className="picture">
@@ -50,7 +51,7 @@ class Detail extends Component {
                 </div>
                 <div className="intro">{this.state.info.intro} </div>
               </div>
-              <div className="vote-now">
+              <div className="vote-now" onClick={this.vote}>
                 <span className="iconfont icon-toupiao"></span>
               </div>
             </div>
@@ -59,9 +60,9 @@ class Detail extends Component {
                 <div className="picture">
                   <LazyLoad src={this.state.info.img} loadingSrc={loadImg} alt={this.state.info.name}></LazyLoad>
                   <div className="title">
-                  <span className="justify">
-                    {this.state.info.name}
-                  </span>
+                    <span className="title-content">
+                      {this.state.info.name}
+                    </span>
                   </div>
                 </div>
                 <div className="right">
@@ -102,6 +103,12 @@ class Detail extends Component {
         </div>
       </>
     )
+  }
+
+  vote = () => {
+    this.setState({
+      blur: true
+    })
   }
 
 }

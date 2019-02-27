@@ -50,7 +50,7 @@
         display flex
         margin-top 72px
         .picture
-          flex 0 4 auto
+          flex 0 2 auto
           position relative
           width 414px
           // height 310px
@@ -69,7 +69,8 @@
               left 0
               right 0
               bottom 0
-              padding 8px 16px 0
+              padding 0px 16px 12px
+              letter-spacing 1px
         .right
           display flex
           flex-direction column
@@ -151,7 +152,7 @@
   .content-pc
     .right
       margin-left 6%
-      flex 0 4 auto
+      flex 0 10 auto
       .about
         width auto
         .info
@@ -166,9 +167,6 @@
     .vote-now
       margin-top 12px     
 
-@media(min-width 600px) and (max-width 710px)
-  .content-pc
-    .top
-      .picture
-        .title
-          font-size 12px
+@media(min-width 600px) and (max-width 770px)
+  .title
+    font-size 13px
