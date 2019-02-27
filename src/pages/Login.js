@@ -40,7 +40,7 @@ class Login extends Component {
             </div>
           </div>
           <div className="btn btn-radius btn-login">登录</div>
-          <div className="skip"><a href="/gallery">先去看看</a></div>
+          <div className="skip"><a href="/#/gallery">先去看看</a></div>
          </div>
         </div>
       </div>
