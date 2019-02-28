@@ -5,8 +5,11 @@ import Login from './pages/Login';
 import Gallery from './pages/Gallery';
 import Detail from './pages/Detail';
 
+import './utils/alert.js'
+
 import './font/iconfont.css'
 import './styles/reset.css'
+import './styles/global.styl'
 
 class App extends Component {
   render() {
@@ -14,7 +17,7 @@ class App extends Component {
       <Router>
         <>
           <Switch>
-            <Route path="/" exact component={Detail}></Route>
+            <Route path="/" exact component={Login}></Route>
             <Route path="/login" component={Login}></Route>
             <Route path="/gallery" component={Gallery}></Route>
             <Route path="/detail/:id" component={Detail}></Route>
