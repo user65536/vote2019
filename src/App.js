@@ -5,8 +5,6 @@ import Login from './pages/Login';
 import Gallery from './pages/Gallery';
 import Detail from './pages/Detail';
 
-import './utils/alert.js'
-
 import './font/iconfont.css'
 import './styles/reset.css'
 import './styles/global.styl'
