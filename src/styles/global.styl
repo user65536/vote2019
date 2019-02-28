@@ -18,13 +18,33 @@ html, body
 
 .alert
   position absolute
-  top 50px
+  z-index 1000
+  top -80px
   left 50%
   transform translateX(-50%)
   width 150px
   height 50px
-  background-color rgba(0, 0, 0, .8)
+  background-color rgba(0, 0, 0, .6)
+  color #eee
   border-radius 4px
   line-height 50px
   text-align center
+  &.show
+    animation alert ease-in-out 2s
+
+@keyframes alert {
+  0% {
+    top -80px
+  }
+  30% {
+    top 50px
+  }
+  70% {
+    top 50px
+  }
+  100% {
+    top -80px
+  }
+}
+
     

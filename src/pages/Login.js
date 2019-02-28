@@ -7,6 +7,7 @@
 import React, { Component } from 'react';
 
 import Validator from '../utils/validator'
+import page from '../utils/page'
 
 import '../styles/login.styl'
 import logo from '../static/logo.png'
@@ -35,7 +36,7 @@ class Login extends Component {
       <div className="wrapper-login" style={{height: this.state.clientHeight}}>
         <div className="nav">
           <img src={logo} alt="北邮WIN" className="logo"/>
-          <span className="title">第{"十一"}届大创展 {this.state.clientHeight}</span>
+          <span className="title">第{"十一"}届大创展</span>
         </div>
         <div className="login-wrap">
          <div className="login-inner">
@@ -74,10 +75,10 @@ class Login extends Component {
     validator.add(password, 'isNone', '密码不能为空')
     validateResult = validator.start()
 
+    page.showAlert('登录成功')
     if(validateResult) {
       this.setState({
-        warnText: validateResult,
-        loading: true
+        warnText: validateResult
       })
     } else {
       this.setState({
