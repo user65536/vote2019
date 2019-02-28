@@ -74,8 +74,6 @@ class Login extends Component {
     validator.add(username, 'isNone', '用户名不能为空')
     validator.add(password, 'isNone', '密码不能为空')
     validateResult = validator.start()
-
-    page.showAlert('登录成功')
     if(validateResult) {
       this.setState({
         warnText: validateResult
