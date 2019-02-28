@@ -17,9 +17,7 @@ class Toast extends Component {
             <div className="input">
               <input type="text"/>
             </div>
-            <div className="code">
-              <img src={this.state.code} alt="验证码"/>
-            </div>
+            <img className="code" src={this.state.code} alt="验证码"/>
           </div>
           <div className="warn-wrap">
             <span className="iconfont icon-xianshi_jinggao"></span>
