@@ -8,10 +8,10 @@ import React, { Component } from 'react';
 
 import Validator from '../utils/validator'
 import page from '../utils/page'
+import vote from '../utils/vote'
 
 import '../styles/login.styl'
 import logo from '../static/logo.png'
-
 
 
 class Login extends Component {
@@ -23,12 +23,18 @@ class Login extends Component {
     warnText: '',
     loading: false
   }
-  /**
-   * js获取视口高度,避免键盘谈起影响背景图,同时监听旋转事件更新高度值
-   */
+  
   componentDidMount() {
     window.addEventListener('orientationchange',
     () => setTimeout( () => this.setState({clientHeight: window.innerHeight + 'px'} ), 300),false)
+
+    console.log('ajax')
+    vote.checkLogin().then(state => {
+      if(state) {
+        page.showAlert("您已登录")
+        this.props.history.goBack()
+      }
+    }).catch(err => {throw new Error(err)})
   }
 
   render () {
@@ -66,26 +72,49 @@ class Login extends Component {
     let username = this.userInp.current.value
     let password = this.passInp.current.value
     let validateResult = ''
-
     if (loading) {
       return false
     }
-
+    
     validator.add(username, 'isNone', '用户名不能为空')
     validator.add(password, 'isNone', '密码不能为空')
     validateResult = validator.start()
     if(validateResult) {
-      this.setState({
-        warnText: validateResult
-      })
+      this.showWarnText(validateResult)
     } else {
-      this.setState({
-        loading: true
-      })
-      // vote.login({username, password}).then()
+      this.btnLock('lock')
+      vote.login({username, password})
+          .then((response) => {
+            const info = {
+              "wrong password": "用户名或密码错误",
+              "no such username": "用户名或密码错误"
+            }
+            if(response.state) {
+              page.showAlert("登录成功")
+              this.props.history.push('gallery')
+            } else {
+              this.btnLock('unlock')
+              this.showWarnText(info[response.msg] ? info[response.msg] : '登录失败')
+            }
+          })
+          .catch((response) => {
+            this.btnLock('unlock')
+            page.showAlert(response)
+          })
     }
   }
 
+  showWarnText(text) {
+    this.setState({
+      warnText: text
+    })
+  }
+
+  btnLock(operation) {
+    this.setState({
+      loading: operation === 'lock'
+    })
+  }
 
   input = () => {
     this.state.warnText &&
