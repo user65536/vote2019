@@ -5,6 +5,7 @@ import Login from './pages/Login';
 import Gallery from './pages/Gallery';
 import Detail from './pages/Detail';
 import Alert from './components/Alert.js'
+// import Temp from './pages/Temp'
 
 import './font/iconfont.css'
 import './styles/reset.css'

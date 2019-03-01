@@ -8,6 +8,7 @@ export default (store=defaultStore, action) => {
     case 'SHOW_ALERT': 
       newStore.text = action.value;
       return newStore
+    default :
+      return store
   }
-  return store
 }
