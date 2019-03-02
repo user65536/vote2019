@@ -5,6 +5,7 @@
  * @
  */
 import React, { Component } from 'react';
+import {Link} from 'react-router-dom'
 
 import Validator from '../utils/validator'
 import page from '../utils/page'
@@ -27,14 +28,14 @@ class Login extends Component {
   componentDidMount() {
     window.addEventListener('orientationchange',
     () => setTimeout( () => this.setState({clientHeight: window.innerHeight + 'px'} ), 300),false)
-
-    console.log('ajax')
-    vote.checkLogin().then(state => {
+    vote.checkLogin().then( ({state}) => {
       if(state) {
         page.showAlert("您已登录")
-        this.props.history.goBack()
+        this.props.history.replace('gallery')
       }
-    }).catch(err => {throw new Error(err)})
+    }).catch(() => {
+      page.showAlert("网络错误")
+    })
   }
 
   render () {
@@ -59,7 +60,7 @@ class Login extends Component {
             </div>
           </div>
           <div className="btn btn-radius btn-login" onClick={this.login} >{this.state.loading ? '登录中...' : '登录'}</div>
-          <div className="skip"><a href="/#/gallery">先去看看</a></div>
+          <div className="skip"><Link to="/gallery" >先去看看</Link></div>
          </div>
         </div>
       </div>
@@ -99,7 +100,7 @@ class Login extends Component {
           })
           .catch((response) => {
             this.btnLock('unlock')
-            page.showAlert(response)
+            page.showAlert("网络错误")
           })
     }
   }

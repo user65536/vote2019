@@ -1,13 +1,18 @@
 import React, { Component } from 'react';
 
 import '../styles/toast.styl'
-import code from '../static/code.png'
+import vote from '../utils/vote';
+import page from '../utils/page'
 
 class Toast extends Component {
- state = {
-  warnText: '投票后不可撤销或更改',
-  code: code
- }
+  codeInput = React.createRef()
+  state = {
+    warnText: '投票后不可撤销或更改',
+    code: null
+  }
+  componentDidMount () {
+    this.renderCode()
+  }
   render () {
     return (
       <>
@@ -15,7 +20,7 @@ class Toast extends Component {
           <div className="title">确认投票</div>
           <div className="input-wrap">
             <div className="input">
-              <input type="text"/>
+              <input ref={this.codeInput} type="text"/>
             </div>
             <img className="code" src={this.state.code} alt="验证码"/>
           </div>
@@ -24,14 +29,39 @@ class Toast extends Component {
             <span className="warn-text">{this.state.warnText}</span>
           </div>
           <div className="btn-wrap">
-            <div className="btn cancel">取消</div>
-            <div className="btn submit">提交</div>
+            <div className="btn cancel" onClick={this.props.onHide} >取消</div>
+            <div className="btn submit" onClick={this.submitCode}>提交</div>
           </div>
         </div>
       </>
     )
   }
-
+  submitCode = () => {
+    const value = this.codeInput.current.value
+    const id = this.props.id
+    vote.voteNow({captcha: value, id})
+    .then(res => {
+      page.showAlert("投票成功")
+      this.props.onHide()
+    })
+    .catch(err => {
+      if(err === "验证码错误") {
+        this.setState({
+          code: null
+        })
+        this.codeInput.current.value = ''
+        this.renderCode()
+      }
+      page.showAlert(err)
+    })
+  }
+  renderCode = () => {
+    vote.getCaptcha().then(res => {
+      this.setState({
+        code: res
+      })
+    }).catch(page.showAlert)
+  }
 }
 
 export default Toast;

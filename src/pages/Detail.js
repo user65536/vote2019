@@ -3,35 +3,39 @@ import React, { Component } from 'react';
 import Nav from '../components/Nav';
 import LazyLoad from '../components/LazyLoad';
 import Toast from '../components/Toast'
+
 import loadImg from '../static/load.png'
+
+import vote from '../utils/vote'
+import page from '../utils/page'
 
 import '../styles/detail.styl'
 
 class Detail extends Component {
   state = {
-    blur: true,
-    info: {
-      "category":1,
-      "id":"DZ01",
-      "img": "https://www.meansky.cn/picture/bupt6.jpg",
-      "intro":"随着智慧城市建设日新月异的发展，被称为城市超级大动脉的地下综合管廊的建设也不断增多。目前，我国的城市地下综合管廊已在31个省、直辖市和自治区的167个城市中建设或投入运行。但是，单纯依靠技术人员难以实现对地下综合管廊的高效、高精度及低成本的巡检。因此，我国不断增加的地下综合管廊亟需精准高效的智能巡检设备。本文将研制智能巡检机器人，实现地下综合管廊场景的3D重建及认知，完成地下综合管廊的精准高效巡检。随着智慧城市建设日新月异的发展，被称为城市超级大动脉的地下综合管廊的建设也不断增多。目前，我国的城市地下综合管廊已在31个省、直辖市和自治区的167个城市中建设或投入运行。但是，单纯依靠技术人员难以实现对地下综合管廊的高效、高精度及低成本的巡检。因此，我国不断增加的地下综合管廊亟需精准高效的智能巡检设备。本文将研制智能巡检机器人，实现地下综合管廊场景的3D重建及认知，完成地下综合管廊的精准高效巡检。随着智慧城市建设日新月异的发展，被称为城市超级大动脉的地下综合管廊的建设也不断增多。目前，我国的城市地下综合管廊已在31个省、直辖市和自治区的167个城市中建设或投入运行。但是，单纯依靠技术人员难以实现对地下综合管廊的高效、高精度及低成本的巡检。因此，我国不断增加的地下综合管廊亟需精准高效的智能巡检设备。本文将研制智能巡检机器人，实现地下综合管廊场景的3D重建及认知，完成地下综合管廊的精准高效巡检。",
-      "leader":"苑立彬",
-      "member":"王翰华华 刘炜伦伦 莫耀凯凯 袁华宇",
-      "name":"基于多传感器融合的地下综合管廊智能巡检机",
-      "school":"电子工程学院",
-      "teacher":"焦继超",
-      "type":"研究生创新创业项目",
-      "view":3,
-      "voteNumber":1
-    }
+    showToast: false,
+    info: {}
+  }
+  componentDidMount() {
+    const id = this.props.match.params.id
+    vote.getProjectDetail(id).then(res => {
+      this.setState({
+        info: res
+      })
+    }).catch((reason) => {
+      if(reason === '404') {
+        this.props.history.replace('404')
+      } else {
+        page.showAlert("网络错误")
+      }
+    })
   }
 
   render () {
-    console.log(this.props)
     return (
       <>
         <div className="wrapper-detail">
-          <div className={`blur-wrap ${this.state.blur ? 'blur' : ''}`}>
+          <div className={`blur-wrap ${this.state.showToast ? 'blur' : ''}`}>
             <Nav></Nav>
             <div className="content-mobile">
               <div className="picture">
@@ -105,14 +109,14 @@ class Detail extends Component {
                       <span className="value">{this.state.info.member}</span>
                     </div>
                   </div>
-                  <button className="vote-now">立即投票</button>
+                  <button className="vote-now" onClick={this.vote} >立即投票</button>
                 </div>
               </div>
               <div className="intro-title">项目简介</div>
               <div className="intro">{this.state.info.intro}</div>
             </div>
           </div>
-          <Toast></Toast>
+          {this.state.showToast ? <Toast id={this.props.match.params.id} onHide={this.hideVote} ></Toast> : ''}
         </div>
       </>
     )
@@ -120,7 +124,13 @@ class Detail extends Component {
 
   vote = () => {
     this.setState({
-      blur: true
+      showToast: true
+    })
+  }
+
+  hideVote = () => {
+    this.setState({
+      showToast: false
     })
   }
 

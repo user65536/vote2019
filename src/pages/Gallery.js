@@ -4,81 +4,22 @@ import ProjectCard from '../components/ProjectCard'
 import Nav from '../components/Nav'
 
 import '../styles/gallery.styl'
+import vote from '../utils/vote';
+import page from '../utils/page'
 
 class Gallery extends Component {
 
-  state = {
-    projects: [{
-        "id": "1",
-        "name": "基于视频流的运动物体检测与追踪基于视频流",
-        "img": [
-          "https://www.meansky.cn/picture/bupt1.jpg",
-          "2313"
-        ],
-        "vote": 1000,
-        "view": 900
-      },
-      {
-        "id": "2",
-        "name": "基于视频流的运动物",
-        "img": [
-          "https://www.meansky.cn/picture/bupt2.jpg",
-          "213123"
-        ],
-        "vote": 10,
-        "view": 900
-      },
-      {
-        "id": "3",
-        "name": "基于视频流的运动物",
-        "img": [
-          "https://www.meansky.cn/picture/bupt3.jpg",
-          "213123"
-        ],
-        "vote": 10,
-        "view": 900
-      },
-      {
-        "id": "4",
-        "name": "基于视频流的运动物",
-        "img": [
-          "https://www.meansky.cn/picture/bupt4.jpg",
-          "213123"
-        ],
-        "vote": 10,
-        "view": 900
-      },
-      {
-        "id": "5",
-        "name": "基于视频流的运动物",
-        "img": [
-          "https://www.meansky.cn/picture/bupt5.jpg",
-          "213123"
-        ],
-        "vote": 10,
-        "view": 900
-      },{
-        "id": "6",
-        "name": "基于视频流的运动物",
-        "img": [
-          "https://www.meansky.cn/picture/bupt1.jpg",
-          "213123"
-        ],
-        "vote": 10,
-        "view": 900
-      },
-      {
-        "id": "7",
-        "name": "基于视频流的运动物",
-        "img": [
-          "https://www.meansky.cn/picture/bupt2.jpg",
-          "213123"
-        ],
-        "vote": 10,
-        "view": 900
-      }
-    ]
-  }
+ state = {
+   projects: []
+ }
+
+ componentDidMount() {
+   vote.getProjectList('all').then((projects) => {
+    this.setState({
+      projects
+    })
+   }).catch(page.showAlert)
+ }
 
   render () {
     return (
@@ -95,22 +36,24 @@ class Gallery extends Component {
           {
             this.state.projects.map((ele, index) => {
               return (
-                <div key={ele.id} className="card-wrap">
+                <div key={ele.id + ele.name} className="card-wrap" onClick={() => {this.navigateToDetail(ele.id)}} >
                   <ProjectCard info={ele}></ProjectCard>
                 </div>
               )
             })
           }
         </div>
-        <div className="footer">
+        {/* <div className="footer">
           <span className="line-left">---------------------</span>
           <span className="bottom">见底了</span>
           <span className="line-right">---------------------</span>
-        </div>
+        </div> */}
       </div>
     )
   }
-
+  navigateToDetail(id) {
+    this.props.history.push(`detail/${id}`)
+  }
 }
 
 export default Gallery;
