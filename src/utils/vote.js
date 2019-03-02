@@ -37,7 +37,7 @@ export default {
   checkLogin () {
     return new Promise((resolve, reject) => {
       ajax({
-        url: apiAddr.checkLogin_f,
+        url: apiAddr.checkLogin,
         method: 'GET'
       }).then(({loginState, id}) => {resolve({state: loginState, id})})
         .catch(() => {
@@ -140,7 +140,7 @@ export default {
           reject(result[res.msg] ? result[res.msg] : "服务忙")
         }
       }).catch(() => {
-        reject("网络错误")
+        reject("投票失败")
       })
     })
   }
