@@ -24,7 +24,7 @@ class Detail extends Component {
       })
     }).catch((reason) => {
       if(reason === '404') {
-        this.props.history.replace('404')
+        this.props.history.replace('/404')
       } else {
         page.showAlert("网络错误")
       }

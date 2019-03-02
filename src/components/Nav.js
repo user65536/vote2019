@@ -63,7 +63,7 @@ class Nav extends Component {
     )
   }
   navigateToLogin = () => {
-    this.props.history.push("login?from=0")
+    this.props.history.push("/login")
   }
   logout = () => {
     vote.logout().then((res) => {

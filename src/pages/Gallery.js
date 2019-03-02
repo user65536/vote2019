@@ -52,7 +52,7 @@ class Gallery extends Component {
     )
   }
   navigateToDetail(id) {
-    this.props.history.push(`detail/${id}`)
+    this.props.history.push(`/detail/${id}`)
   }
 }
 

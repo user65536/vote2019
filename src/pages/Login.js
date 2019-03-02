@@ -31,7 +31,7 @@ class Login extends Component {
     vote.checkLogin().then( ({state}) => {
       if(state) {
         page.showAlert("您已登录")
-        this.props.history.replace('gallery')
+        this.props.history.replace('/gallery')
       }
     }).catch(() => {
       page.showAlert("网络错误")
@@ -92,7 +92,7 @@ class Login extends Component {
             }
             if(response.state) {
               page.showAlert("登录成功")
-              this.props.history.push('gallery')
+              this.props.history.push('/gallery')
             } else {
               this.btnLock('unlock')
               this.showWarnText(info[response.msg] ? info[response.msg] : '登录失败')
