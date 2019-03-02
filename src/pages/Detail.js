@@ -123,9 +123,16 @@ class Detail extends Component {
   }
 
   vote = () => {
-    this.setState({
-      showToast: true
-    })
+    vote.checkLogin().then(({state}) => {
+      if(!state) {
+        page.showAlert("请先登录")
+        this.props.history.push(`/login?from=/detail/${this.props.match.params.id}`)
+      } else {
+        this.setState({
+          showToast: true
+        })
+      }
+    }).catch(page.showAlert)
   }
 
   hideVote = () => {

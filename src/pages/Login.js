@@ -26,6 +26,7 @@ class Login extends Component {
   }
   
   componentDidMount() {
+    console.log(this.props)
     window.addEventListener('orientationchange',
     () => setTimeout( () => this.setState({clientHeight: window.innerHeight + 'px'} ), 300),false)
     vote.checkLogin().then( ({state}) => {
@@ -86,13 +87,14 @@ class Login extends Component {
       this.btnLock('lock')
       vote.login({username, password})
           .then((response) => {
+            let {search} = this.props.location
             const info = {
               "wrong password": "用户名或密码错误",
               "no such username": "用户名或密码错误"
             }
             if(response.state) {
               page.showAlert("登录成功")
-              this.props.history.push('/gallery')
+              this.props.history.push(search ? search.split("=")[1] :'/gallery')
             } else {
               this.btnLock('unlock')
               this.showWarnText(info[response.msg] ? info[response.msg] : '登录失败')
