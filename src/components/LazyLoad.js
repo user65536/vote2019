@@ -15,12 +15,27 @@ class LazyLoad extends Component {
   }
   componentDidMount () {
     let img = new Image();
-    img.src = this.props.src;
-    img.onload = () => {
-      this.setState({
-        load: true
-      })
+    if(this.props.src) {
+      img.src = this.props.src;
+      img.onload = () => {
+        this.setState({
+          load: true
+        })
+      }
     }
+  }
+  shouldComponentUpdate (nextProps, nextState) {
+    let propsChange = JSON.stringify(this.props) !== JSON.stringify(nextProps)
+    let img = new Image();
+    if(nextProps.src && propsChange) {
+      img.src = nextProps.src;
+      img.onload = () => {
+        this.setState({
+          load: true
+        })
+      }
+    }
+    return true
   }
   render () {
     let {src, alt} = this.props;
