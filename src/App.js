@@ -5,7 +5,7 @@ import Login from './pages/Login';
 import Gallery from './pages/Gallery';
 import Detail from './pages/Detail';
 import Alert from './components/Alert.js'
-// import Temp from './pages/Temp'
+import NotFound from './pages/NotFound'
 
 import './font/iconfont.css'
 import './styles/reset.css'
@@ -20,9 +20,10 @@ class App extends Component {
             <Switch>
               <Route path="/" exact component={Login}></Route>
               <Route path="/login" component={Login}></Route>
+              <Route path="/404" component={NotFound}></Route>
               <Route path="/gallery" component={Gallery}></Route>
               <Route path="/detail/:id" component={Detail}></Route>
-              {/* <Route path="/" component={NotFound}></Route> */}
+              <Route path="/" component={NotFound}></Route>
             </Switch>
           </>
       </Router>
