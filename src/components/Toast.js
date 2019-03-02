@@ -26,8 +26,13 @@ class Toast extends Component {
             <img className="code" src={this.state.code} alt="验证码"/>
           </div>
           <div className="warn-wrap">
-            {this.state.warnText ? <span className="iconfont icon-xianshi_jinggao"></span> : ''}
-            <span className="warn-text">{this.state.warnText}</span>
+            <div className="left">
+              {this.state.warnText ? <span className="iconfont icon-xianshi_jinggao"></span> : ''}
+              <span className="warn-text">{this.state.warnText}</span>
+            </div>
+            <div className="right">
+              <span onClick={this.renderCode} className="change">换一个</span>
+            </div>
           </div>
           <div className="btn-wrap">
             <div className="btn cancel" onClick={this.props.onHide} >取消</div>
