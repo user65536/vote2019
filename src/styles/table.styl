@@ -1,0 +1,87 @@
+.wrapper-table 
+  box-sizing border-box
+  width 100%
+  height 100vh
+  padding  3vh 4vw
+  background-image linear-gradient(to left top, #2a76dc, #4873d8, #5c70d3, #6c6dce, #796ac9, #8567c3, #8f64bc, #9761b5, #a05dab, #a85ba1, #ad5898, #b1578e)
+  overflow hidden
+  .header
+    height 11vh
+    border 1px solid black 
+  .content
+    position relative
+    margin-top 8vh
+    height 72vh
+    font-size 0
+    .item
+      position: absolute;
+      width 45vw
+      margin-bottom 3vh
+      height 9vh
+      border-radius 0.8vw
+      background-color rgba(255, 255, 255, .57)
+      font-size: 16px;
+    .item-1
+      top 0px
+    .item-2
+      top 12vh
+    .item-3
+      top 24vh
+    .item-4
+      top 36vh
+    .item-5
+      top 48vh
+    .item-6
+      top 60vh
+    .item-right
+      left 47vw
+    .current
+      transform translateX(0)
+      transition top .5s linear, left .5s linear
+    .previous
+      transform translateX(-98vw)
+    .next
+      transform translateX(98vw)
+    .previous:nth-of-type(6n+1) {
+      transition: transform 1.2s ease-in 0s;
+    }
+    .previous:nth-of-type(6n+2) {
+      transition: transform 1.2s ease-in .1s;
+    }
+    .previous:nth-of-type(6n+3) {
+      transition: transform 1.2s ease-in .2s;
+    }
+    .previous:nth-of-type(6n+4) {
+      transition: transform 1.2s ease-in .3s;
+    }
+    .previous:nth-of-type(6n+5) {
+      transition: transform 1.2s ease-in .4s;
+    }
+    .previous:nth-of-type(6n+6) {
+      transition: transform 1.2s ease-in .5s;
+    }
+    .current-withTransition:nth-of-type(6n+1) {
+      transition: transform 1.2s ease-out .7s;
+    }
+    .current-withTransition:nth-of-type(6n+2) {
+      transition: transform 1.2s ease-out .8s;
+    }
+    .current-withTransition:nth-of-type(6n+3) {
+      transition: transform 1.2s ease-out .9s;
+    }
+    .current-withTransition:nth-of-type(6n+4) {
+      transition: transform 1.2s ease-out 1s;
+    }
+    .current-withTransition:nth-of-type(6n+5) {
+      transition: transform 1.2s ease-out 1.1s;
+    }
+    .current-withTransition:nth-of-type(6n+6) {
+      transition: transform 1.2s ease-out 1.2s;
+    }
+
+
+
+
+
+
+
