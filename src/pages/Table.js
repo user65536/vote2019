@@ -9,7 +9,7 @@ class Table extends Component {
   componentDidMount () {
     setInterval(() => {
       this.change()
-    }, 2500)
+    }, 4000)
   }
   render () {
     return (
