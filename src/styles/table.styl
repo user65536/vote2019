@@ -1,5 +1,9 @@
-cell-out-transition = ease-in
-cell-in-transition = ease-out
+cell-out-transition = cubic-bezier(0.83,-0.37, 1, 1)
+cell-in-transition = cubic-bezier(0, 0, 0.39, 1)
+transition-out-duration = 1s
+transition-in-duration = 0.8s
+.warn
+  display none
 .wrapper-table 
   box-sizing border-box
   width 100%
@@ -8,8 +12,48 @@ cell-in-transition = ease-out
   background-image linear-gradient(to left top, #2a76dc, #4873d8, #5c70d3, #6c6dce, #796ac9, #8567c3, #8f64bc, #9761b5, #a05dab, #a85ba1, #ad5898, #b1578e)
   overflow hidden
   .header
-    height 11vh
-    border 1px solid black 
+    display flex
+    justify-content space-between
+    height 10vh
+    color #ffffff
+    .left
+      flex 0 0 auto
+      .logo
+        display inline-block
+        height 100%
+        background red
+        img 
+          width 4em
+          height 100%
+      // .title
+      //   display inline-block
+      //   vertical-align top
+      //   margin-left 12px
+      //   width 400px
+      //   .zh
+      //     font-size 26px
+      //     margin-bottom 8px
+      //   .en
+      //     font-size 16px
+      //     line-height 20px
+    .center
+      position absolute
+      left 50%
+      transform translateX(-50%)
+      // flex 0 0 auto
+      .text
+        font-size 16px
+      .number
+        font-size 80px
+        line-height 60px
+    .right
+      flex 0 0 auto
+      .time
+        font-size 42px
+        text-align right
+      .date
+        font-size 18px
+        text-align right
   .content
     position relative
     margin-top 8vh
@@ -33,18 +77,18 @@ cell-in-transition = ease-out
         text-align center
         line-height 9vh
         color #424242
-        font-size 32px
+        font-size 28px
       .title
         display flex
         align-items center
-        padding 2vh 0
-        line-height 2.5vh
+        line-height 9vh
         flex 1 1
-        font-size 20px
+        font-size 1.4vw
       .voteNumber
         height 9vh
         width 11vh
-        padding 0 2.6vh
+        padding 0 0.7vh 0 0
+        flex 0 0 atuo
         line-height 9vh
         font-size 20px
         text-align center
@@ -70,40 +114,40 @@ cell-in-transition = ease-out
     .next
       transform translateX(98vw)
     .previous:nth-of-type(6n+1) {
-      transition: transform 1.2s cell-out-transition 0s;
+      transition: transform transition-out-duration cell-out-transition 0s;
     }
     .previous:nth-of-type(6n+2) {
-      transition: transform 1.2s cell-out-transition .1s;
+      transition: transform transition-out-duration cell-out-transition .1s;
     }
     .previous:nth-of-type(6n+3) {
-      transition: transform 1.2s cell-out-transition .2s;
+      transition: transform transition-out-duration cell-out-transition .2s;
     }
     .previous:nth-of-type(6n+4) {
-      transition: transform 1.2s cell-out-transition .3s;
+      transition: transform transition-out-duration cell-out-transition .3s;
     }
     .previous:nth-of-type(6n+5) {
-      transition: transform 1.2s cell-out-transition .4s;
+      transition: transform transition-out-duration cell-out-transition .4s;
     }
     .previous:nth-of-type(6n+6) {
-      transition: transform 1.2s cell-out-transition .5s;
+      transition: transform transition-out-duration cell-out-transition .5s;
     }
     .current-withTransition:nth-of-type(6n+1) {
-      transition: transform 1.2s cell-in-transition .7s;
+      transition: transform transition-in-duration cell-in-transition 1s;
     }
     .current-withTransition:nth-of-type(6n+2) {
-      transition: transform 1.2s cell-in-transition .8s;
+      transition: transform transition-in-duration cell-in-transition 1.1s;
     }
     .current-withTransition:nth-of-type(6n+3) {
-      transition: transform 1.2s cell-in-transition .9s;
+      transition: transform transition-in-duration cell-in-transition 1.2s;
     }
     .current-withTransition:nth-of-type(6n+4) {
-      transition: transform 1.2s cell-in-transition 1s;
+      transition: transform transition-in-duration cell-in-transition 1.3s;
     }
     .current-withTransition:nth-of-type(6n+5) {
-      transition: transform 1.2s cell-in-transition 1.1s;
+      transition: transform transition-in-duration cell-in-transition 1.4s;
     }
     .current-withTransition:nth-of-type(6n+6) {
-      transition: transform 1.2s cell-in-transition 1.2s;
+      transition: transform transition-in-duration cell-in-transition 1.5s;
     }
 
 @font-face {
@@ -111,7 +155,14 @@ cell-in-transition = ease-out
   src: url('../font/yuan.ttf');
 }
 
-
-
-
+@media (max-width 1000px)
+  .wrapper-table
+    display none
+  .warn
+    position absolute
+    display block
+    top 100px
+    left 50%
+    transform translateX(-50%)
+    
 
