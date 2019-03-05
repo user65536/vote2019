@@ -10,7 +10,8 @@ const apiAddr = {
   getProjectList: '/api/projectList',
   getProjectDetail: '/api/project',
   getCaptcha: '/api/captcha',
-  voteNow: '/api/vote'
+  voteNow: '/api/vote',
+  getVoteRecord: '/api/voteRecord'
 }
 for (let [k, v] of Object.entries(apiAddr) ) {
   apiAddr[k] = `${host}${v}`
@@ -143,7 +144,26 @@ export default {
         reject("投票失败")
       })
     })
-  }
+  },
+  getVoteRecord () {
 
+    return new Promise((resolve, reject) => {
+      ajax({
+        url: apiAddr.getVoteRecord,
+        method: 'GET'
+      }).then(res => {
+        if(res.state) {
+          res.list.sort((a,b) => b.voteNumber - a.voteNumber).forEach((project, index) => {
+            project.rank = index + 1
+          })
+          resolve(res.list)
+        } else {
+          reject(0)
+        }
+      }).catch(() => {
+        reject(-1)
+      })
+    })
+  }
 }
 
