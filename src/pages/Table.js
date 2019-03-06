@@ -1,6 +1,8 @@
 
 import React, { Component } from 'react';
 
+import ScoreBoard from '../components/ScoreBoard'
+
 import '../styles/table.styl'
 import logo from '../static/logo2.png'
 
@@ -12,20 +14,32 @@ class Table extends Component {
     currentGroup: 0,
     currentList: [],
     nextList: [],
-    scroll: false
+    scroll: false,
+    voteNumber: '00000',
+    time: {
+      hour: '0',
+      minute: '00',
+      second: '00',
+      month: '0',
+      date: '0',
+      day: 'SUN',
+      year: '0000'
+    }
   }
   componentDidMount () {
     this.addFnToWindow()
+    this.autoGetVoteNumber()
+    this.autoFreshTime()
     vote.getVoteRecord().then(list => {
       this.setState({
         list: list,
         currentList: list.slice(0, 12),
         nextList: list.slice(12, 24)
       })
-    }).catch(() => {
-
+    }).catch((e) => {
+      console.log(e)
     })
-    window.vote.timer = setInterval(() => {
+    window.vote.scrollTimer = setInterval(() => {
       this.change()
     }, 5000)
   }
@@ -46,13 +60,11 @@ class Table extends Component {
               </div> */}
             </div>
             <div className="center">
-              <span className="text">共</span>
-              <span className="number">19999</span>
-              <span className="text">票</span>
+              <ScoreBoard number={this.state.voteNumber.split("")} ></ScoreBoard>
             </div>
             <div className="right">
-              <div className="time">18<span className="point">:</span>30<span className="point">:</span>22</div>
-              <div className="date">星期六 3-2-2019</div>
+              <div className="time">{this.state.time.hour}<span className="point">:</span>{this.state.time.minute}<span className="point">:</span>{this.state.time.second}</div>
+              <div className="date">{this.state.time.day} {`${this.state.time.month}-${this.state.time.date}-${this.state.time.year}`}</div>
             </div>
           </div>
           <div className="content">
@@ -70,17 +82,6 @@ class Table extends Component {
                   )
                 })
               }
-              {/* <div className={`item item-2 ${this.state.scroll ? "previous" : "current"}`}></div>
-              <div className={`item item-3 ${this.state.scroll ? "previous" : "current"}`}></div>
-              <div className={`item item-4 ${this.state.scroll ? "previous" : "current"}`}></div>
-              <div className={`item item-5 ${this.state.scroll ? "previous" : "current"}`}></div>
-              <div className={`item item-6 ${this.state.scroll ? "previous" : "current"}`}></div>
-              <div className={`item item-right item-1 ${this.state.scroll ? "previous" : "current"}`}></div>
-              <div className={`item item-right item-2 ${this.state.scroll ? "previous" : "current"}`}></div>
-              <div className={`item item-right item-3 ${this.state.scroll ? "previous" : "current"}`}></div>
-              <div className={`item item-right item-4 ${this.state.scroll ? "previous" : "current"}`}></div>
-              <div className={`item item-right item-5 ${this.state.scroll ? "previous" : "current"}`}></div>
-              <div className={`item item-right item-6 ${this.state.scroll ? "previous" : "current"}`}></div> */}
             </div>
             <div>
               {
@@ -91,7 +92,7 @@ class Table extends Component {
                     (index === 5 ? this.backToStart : null ) : 
                     index === this.state.nextList.length - 1 ? this.backToStart : null) } 
                     key={project.id + project.name + 'next'} 
-                    className={`item item-${index % 6 + 1} ${index > 5 ? 'item-right' : ''}  ${this.state.scroll ? "current current-withTransition" : "next"}`}>
+                    className={`item item-${index % 6 + 1} ${index > 5 ? 'item-right' : ''} ${this.state.scroll ? "current current-withTransition" : "next"}`}>
                       <div className="rank">{project.rank}</div>
                       <div className={`title`}>
                         <span>{project.name}</span>
@@ -101,18 +102,6 @@ class Table extends Component {
                   )
                 })
               }
-              {/* <div className={`item item-1 ${this.state.scroll ? "current current-withTransition" : "next"}`}></div>
-              <div className={`item item-2 ${this.state.scroll ? "current current-withTransition" : "next"}`}></div>
-              <div className={`item item-3 ${this.state.scroll ? "current current-withTransition" : "next"}`}></div>
-              <div className={`item item-4 ${this.state.scroll ? "current current-withTransition" : "next"}`}></div>
-              <div className={`item item-5 ${this.state.scroll ? "current current-withTransition" : "next"}`}></div>
-              <div className={`item item-6 ${this.state.scroll ? "current current-withTransition" : "next"}`}></div>
-              <div className={`item item-right item-1 ${this.state.scroll ? "current current-withTransition" : "next"}`}></div>
-              <div className={`item item-right item-2 ${this.state.scroll ? "current current-withTransition" : "next"}`}></div>
-              <div className={`item item-right item-3 ${this.state.scroll ? "current current-withTransition" : "next"}`}></div>
-              <div className={`item item-right item-4 ${this.state.scroll ? "current current-withTransition" : "next"}`}></div>
-              <div className={`item item-right item-5 ${this.state.scroll ? "current current-withTransition" : "next"}`}></div>
-              <div onTransitionEnd={this.backToStart} className={`item item-right item-6 ${this.state.scroll ? "current current-withTransition" : "next"}`}></div> */}
             </div>
           </div>
         </div>
@@ -144,16 +133,51 @@ class Table extends Component {
   }
   addFnToWindow = () => {
     window.vote = {}
-    window.vote.timer = null
+    window.vote.scrollTimer = null
     window.vote.stopScroll = () => {
-      clearInterval(window.vote.timer)
+      clearInterval(window.vote.scrollTimer)
     }
     window.vote.startScroll = (time) => {
-      clearInterval(window.vote.timer)
-      window.vote.timer = setInterval(() => {
+      clearInterval(window.vote.scrollTimer)
+      window.vote.scrollTimer = setInterval(() => {
         this.change()
       }, time)
     }
+  }
+  autoGetVoteNumber = () => {
+    vote.getTotalVote().then(number => {
+      this.setState({
+        voteNumber: number
+      })
+    }).catch((e) => {
+      console.log(e)
+    })
+    window.vote.refreshTotalTimer = setInterval(() => {
+      vote.getTotalVote().then(number => {
+        this.setState({
+          voteNumber: number
+        })
+      }).catch((e) => {
+        console.log(e)
+      })
+    }, 15000)
+  }
+  autoFreshTime = () => {
+    window.vote.dateTimer = setInterval(() => {
+      let daySet = ['SUN','MON','TUE','WED','THU','FRI','SAT']
+      let date = new Date()
+      this.setState({
+        time: {
+          hour: date.getHours(),
+          minute: date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes(),
+          second: date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds(),
+          day: daySet[date.getDay()],
+          year: date.getFullYear(),
+          month: date.getMonth() + 1,
+          date: date.getDate()
+        }
+      })
+    }, 1000)
   }
 }
 
