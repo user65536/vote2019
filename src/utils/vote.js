@@ -11,7 +11,8 @@ const apiAddr = {
   getProjectDetail: '/api/project',
   getCaptcha: '/api/captcha',
   voteNow: '/api/vote',
-  getVoteRecord: '/api/voteRecord'
+  getVoteRecord: '/api/voteRecord',
+  getTotalVote: '/vote/totalVote'
 }
 for (let [k, v] of Object.entries(apiAddr) ) {
   apiAddr[k] = `${host}${v}`
@@ -158,10 +159,26 @@ export default {
           })
           resolve(res.list)
         } else {
-          reject(0)
+          reject("返回state false")
         }
       }).catch(() => {
-        reject(-1)
+        reject("请求失败")
+      })
+    })
+  },
+  getTotalVote () {
+    return new Promise ((resolve, reject) => {
+      ajax({
+        url: apiAddr.getTotalVote,
+        method: 'GET'
+      }).then(res => {
+        if(res.state && /^[0-9]+$/.test(res.total)) {
+          resolve(res.total.toString())
+        } else {
+          reject("返回数据不符合规范")
+        }
+      }).catch(() => {
+        reject("请求失败")
       })
     })
   }
