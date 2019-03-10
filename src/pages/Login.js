@@ -26,7 +26,6 @@ class Login extends Component {
   }
   
   componentDidMount() {
-    console.log(this.props)
     window.addEventListener('orientationchange',
     () => setTimeout( () => this.setState({clientHeight: window.innerHeight + 'px'} ), 300),false)
     vote.checkLogin().then( ({state}) => {
