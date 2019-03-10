@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import store from '../store/store'
 
 import '../styles/toast.styl'
 import vote from '../utils/vote';
@@ -52,19 +53,19 @@ class Toast extends Component {
     const id = this.props.id
     vote.voteNow({captcha: value, id})
     .then(res => {
+      let action = {
+        type: 'RENEW_VOTE_NUM',
+        value: store.getState().voteLeft - 1
+      }
+      store.dispatch(action)
       page.showAlert("投票成功")
       this.submitLock("unlock")
       this.props.onHide()
     })
     .catch(err => {
       this.submitLock("unlock")
-      if(err === "验证码错误") {
-        this.setState({
-          code: null
-        })
-        this.codeInput.current.value = ''
-        this.renderCode()
-      }
+      this.codeInput.current.value = ''
+      this.renderCode()
       page.showAlert(err)
     })
   }
