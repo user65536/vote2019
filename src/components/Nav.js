@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {withRouter} from 'react-router-dom'
+import store from '../store/store'
 
 import vote from '../utils/vote'
 import page from '../utils/page'
@@ -11,10 +12,17 @@ class Nav extends Component {
   state = {
     loginState: false,
     userID: '',
-    ticketLeft: ''
+    ticketLeft: store.getState().voteLeft
   }
 
   componentDidMount () {
+    store.subscribe(() => {
+      if(store.getState().voteLeft >= 0) {
+        this.setState({
+          ticketLeft: store.getState().voteLeft
+        })
+      }
+    })
     vote.checkLogin().then( ({state, id}) => {
       if(state) {
         this.setState({loginState: true, userID: id})
@@ -25,17 +33,19 @@ class Nav extends Component {
         })
       }
     }).then((num) => {
-      this.setState({
-        ticketLeft: num
-      })
+      let action = {
+        type: 'RENEW_VOTE_NUM',
+        value: num
+      }
+      store.dispatch(action)
     }).catch(page.showAlert)
   }
 
   render () {
     return (
       <>
-      <div className="wrapper-nav">
-        <div className="logo"></div>
+      <div className={`wrapper-nav ${this.props.blur}`}>
+        <div onClick={this.backHome} className="logo"></div>
         <div className="slot">{
           this.props.children
         }</div>
@@ -58,7 +68,7 @@ class Nav extends Component {
           }
         </div>
       </div>
-      <div className="black"></div>
+      <div className="blank"></div>
       </>
     )
   }
@@ -72,7 +82,10 @@ class Nav extends Component {
       })
     }).catch(page.showAlert)
   }
-
+  backHome = () => {
+    console.log('a')
+    this.props.history.push('/gallery')
+  }
 }
 
 export default withRouter(Nav);
