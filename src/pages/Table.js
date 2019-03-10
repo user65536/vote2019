@@ -41,7 +41,7 @@ class Table extends Component {
     })
     window.vote.scrollTimer = setInterval(() => {
       this.change()
-    }, 5000)
+    }, 10000)
   }
   render () {
     return (
@@ -53,7 +53,7 @@ class Table extends Component {
               <div className="logo">
                 <img src={logo} alt="第十一届大创展"/>
               </div>
-              {/* <div className="title">
+              {/* <div className="title-g">
                 <div className="zh">北京邮电大学</div>
                 <div className="en">第十一届大创展</div>
                 <div className="en">实时得票统计</div>
