@@ -1,22 +1,31 @@
 import ajax from './_ajax'
 
-const host = "http://result.eolinker.com/Cd3uNIt2f3c1f80117d47fc916e8ce8d799404697481ae5?uri="
+const host = '';
+// "http://10.102.251.251:8000"
 
 const apiAddr = {
   login: '/api/login',
   logout: '/api/logout',
   checkLogin: '/api/checkLogin',
-  getRemainVOte: '/api/getRemainVOte',
+  getRemainVOte: '/api/getRemainVote',
   getProjectList: '/api/projectList',
   getProjectDetail: '/api/project',
   getCaptcha: '/api/captcha',
   voteNow: '/api/vote',
   getVoteRecord: '/api/voteRecord',
-  getTotalVote: '/vote/totalVote'
+  getTotalVote: '/api/totalVote',
+  getImage: '/api/image'
 }
 for (let [k, v] of Object.entries(apiAddr) ) {
   apiAddr[k] = `${host}${v}`
-  apiAddr[`${k}_f`] = `${host}${v}&resultType=failure`
+}
+
+function forMatData(data) {
+  let formData = new FormData()
+  for(let [k,v] of Object.entries(data)) {
+    formData.append(k, v)
+  }
+  return formData
 }
 
 export default {
@@ -25,7 +34,7 @@ export default {
       ajax({
         url: apiAddr.login,
         method: 'POST',
-        data: {username, password}
+        data: forMatData({username, password})
       }).then(response => {
         // if (typeof response === 'string') {
         //   reject('系统错误:JSON needed')
@@ -67,7 +76,7 @@ export default {
     return new Promise ((resolve, reject) => {
       ajax({
         url: apiAddr.logout,
-        method: 'POST'
+        method: 'GET'
       }).then((res) => {
         if(res.state) {
           resolve(true)
@@ -80,12 +89,18 @@ export default {
     })
   },
   getProjectList (category) {
+    if(category === 'all') {
+      category = ''
+    }
     return new Promise((resolve, reject) => {
       ajax({
-        url: apiAddr.getProjectList + '/{category}',
+        url: apiAddr.getProjectList + `${category}`,
         method: 'GET'
       }).then( res => {
         if(res.list) {
+          res.list.forEach((project, index) => {
+            project.imgSrc = project.img ? `${apiAddr.getImage}/${project.id}/${project.img}` : 'https://www.meansky.cn/picture/bupt5.jpg'
+          })
           resolve(res.list)
         } else {
           reject("查询失败")
@@ -96,10 +111,11 @@ export default {
   getProjectDetail (id) {
     return new Promise((resolve, reject) => {
       ajax({
-        url: apiAddr.getProjectDetail + '/{project}',
+        url: apiAddr.getProjectDetail + `/${id}`,
         method: 'GET'
       }).then((res) => {
         if(res.state) {
+          res.list.imgSrc =  res.list.img ? `${apiAddr.getImage}/${res.list.id}/${res.list.img}` : 'https://www.meansky.cn/picture/bupt5.jpg'
           resolve(res.list)
         } else {
           reject("404")
@@ -110,26 +126,27 @@ export default {
     })
   },
   getCaptcha () {
-    return new Promise((resolve, reject) => {
-      ajax({
-        url: apiAddr.getCaptcha,
-        method: 'GET'
-      }).then((res) => {
-        resolve(res)
-      }).catch( () => {
-        reject("验证码获取失败")
-      })
-    })
+    // return new Promise((resolve, reject) => {
+    //   ajax({
+    //     url: apiAddr.getCaptcha,
+    //     method: 'GET'
+    //   }).then((res) => {
+    //     resolve(res)
+    //   }).catch( () => {
+    //     reject("验证码获取失败")
+    //   })
+    // })
+    return Promise.resolve(`${apiAddr.getCaptcha}?code=${Math.round(Math.random()*10000000)}`)
   },
   voteNow ({id, captcha}) {
     return new Promise((resolve, reject) => {
       ajax({
         url: apiAddr.voteNow,
         method: 'POST',
-        data: {
+        data: forMatData({
           captcha: captcha,
           project: id
-        }
+        })
       }).then((res) => {
         let result = {
           "expired": "激活时间超时",
