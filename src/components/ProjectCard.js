@@ -11,12 +11,12 @@ class ProjectCard extends Component {
 
   
   render () {
-    let {img, name, voteNumber, view} = this.props.info
+    let {imgSrc, name, voteNumber, view} = this.props.info
     return (
       <div className="card">
         <div className="img-wrap">
           <div className="img">
-            <LazyLoad src={img} alt={name} loadingSrc={loadingSrc}></LazyLoad>
+            <LazyLoad src={imgSrc} alt={name} loadingSrc={loadingSrc}></LazyLoad>
           </div>
         </div>
         <div className="project-info">
