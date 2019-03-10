@@ -35,11 +35,11 @@ class Detail extends Component {
     return (
       <>
         <div className="wrapper-detail">
-          <div className={`blur-wrap ${this.state.showToast ? 'blur' : ''}`}>
-            <Nav></Nav>
-            <div className="content-mobile">
+          <Nav blur={this.state.showToast ? 'blur' : ''}></Nav>
+          <div className="content-mobile">
+            <div className={`blur-wrap ${this.state.showToast ? 'blur' : ''}`}>
               <div className="picture">
-                <LazyLoad src={this.state.info.img} loadingSrc={loadImg} alt={this.state.info.name}></LazyLoad>
+                <LazyLoad src={this.state.info.imgSrc} loadingSrc={loadImg} alt={this.state.info.name}></LazyLoad>
               </div>
               <div className="text">
                 <div className="title">{this.state.info.name}</div>
@@ -67,14 +67,16 @@ class Detail extends Component {
                 </div>
                 <div className="intro">{this.state.info.intro} </div>
               </div>
-              <div className="vote-now" onClick={this.vote}>
-                <span className="iconfont icon-toupiao"></span>
-              </div>
             </div>
-            <div className="content-pc">
+            <div className={`vote-now ${this.state.showToast ? 'blur' : ''}`} onClick={this.vote}>
+              <span className="iconfont icon-toupiao"></span>
+            </div>
+          </div>
+          <div className="content-pc">
+            <div className={`blur-wrap ${this.state.showToast ? 'blur' : ''}`}>
               <div className="top">
                 <div className="picture">
-                  <LazyLoad src={this.state.info.img} loadingSrc={loadImg} alt={this.state.info.name}></LazyLoad>
+                  <LazyLoad src={this.state.info.imgSrc} loadingSrc={loadImg} alt={this.state.info.name}></LazyLoad>
                   <div className="title">
                     <span className="title-content">
                       {this.state.info.name}
