@@ -10,10 +10,16 @@ import '../styles/nav.styl'
 
 class Nav extends Component {
   state = {
+    group: '0',
+    groupListName: ['所有分类', '字数不一样的分类', '好多分类', '第四种分类', '不是最后一个分类', '最后的分类'],
+    showGroupList: false,
+    showSearchInput: false,
     loginState: false,
+    searchValue: '',
     userID: '',
     ticketLeft: store.getState().voteLeft
   }
+
 
   componentDidMount () {
     store.subscribe(() => {
@@ -42,31 +48,104 @@ class Nav extends Component {
   }
 
   render () {
+    let groupDom = (
+      <div className="group-by">
+        <div onClick={this.toggleList}>
+          <span className="group">{this.state.groupListName[this.state.group]}</span>
+          <span className={`iconfont icon-down1 ${this.state.showGroupList ? 'rotate' : ''}`}></span>
+        </div>
+        <ul onClick={this.handleGroupListClick}
+            className={`group-list ${this.state.showGroupList ? 'show' : ''}`}>
+            {
+              this.state.groupListName.map((item, index) => {
+                return (
+                  <li key={item + index} data-group-id={index} className="group-item">{item}</li>
+                )
+              })
+            }
+          {/* <li data-group-id="all" className="group-item">所有分类</li>
+          <li data-group-id="1" className="group-item">字数不一样的分类</li>
+          <li data-group-id="2" className="group-item">二样分类</li>
+          <li data-group-id="3" className="group-item">还有啥分类</li>
+          <li data-group-id="4" className="group-item">第四个分类</li>
+          <li data-group-id="5" className="group-item">最后一个分类</li> */}
+        </ul>
+      </div>
+    )
+
+    let searchBarDom = (
+      <div className="search-bar"> 
+        <input 
+          value={this.state.searchValue}
+          onChange={(e) => {this.setState({searchValue: e.currentTarget.value})}}
+          onFocus={this.showInput}
+          onBlur={this.hideInput}
+          type="text" 
+          className={`search-input ${this.state.showSearchInput ? 'active' : 'active'}`}/>
+        <span onClick={this.search} className="iconfont icon-sousuo search-btn"></span>
+      </div>
+    )
     return (
       <>
-      <div className={`wrapper-nav ${this.props.blur}`}>
-        <div onClick={this.backHome} className="logo"></div>
-        <div className="slot">{
-          this.props.children
-        }</div>
-        <div className="right">
+      {
+        this.state.showGroupList ? (
+          <div onClick={this.toggleList} className="mask"></div>
+        ) : ''
+      }
+      <div className={`wrapper-nav ${this.props.blur ? 'blur' : ''}`}>
+        <div className="top">
+          <div className="left">
+            <div onClick={this.backHome} className="logo"></div>
+            {
+              this.props.withBar ? (
+                <div className="group-by-wrap">
+                  {groupDom}
+                </div>
+              ) : ''
+            }
+          </div>
+          <div className="slot">{
+            this.props.children
+          }</div>
+          <div className="right">
           {
-            this.state.loginState ? (
-              <>
-                <div className="ticker">
-                  <span className="iconfont icon-toupiao"></span>
-                  <span className="num">{this.state.ticketLeft}</span>
-                </div>
-                <div className="user">{this.state.userID}</div>
-                <div onClick={this.logout} className="quit">
-                  <span className="iconfont icon-dengchu"></span>
-                </div>
-              </>
-            ) : (
-              <button onClick={this.navigateToLogin} className="login">登录</button>
-            )
+            this.props.withBar ? (
+              <div className="search-bar-wrap">
+                {searchBarDom}
+              </div>
+            ) : ''
           }
+            
+            {
+              this.state.loginState ? (
+                <>
+                  <div className="ticker">
+                    <span className="iconfont icon-toupiao"></span>
+                    <span className="num">{this.state.ticketLeft}</span>
+                  </div>
+                  <div className="user">{this.state.userID}</div>
+                  <div onClick={this.logout} className="quit">
+                    <span className="iconfont icon-dengchu"></span>
+                  </div>
+                </>
+              ) : (
+                <button onClick={this.navigateToLogin} className="login">登录</button>
+              )
+            }
+          </div>
         </div>
+        {
+          this.props.withBar ? (
+            <div className="bottom">
+                <div className="left">
+                  {groupDom}
+                </div>
+                <div className="right">
+                  {searchBarDom}
+                </div>
+            </div>
+          ) : ''
+        }
       </div>
       <div className="blank"></div>
       </>
@@ -83,8 +162,38 @@ class Nav extends Component {
     }).catch(page.showAlert)
   }
   backHome = () => {
-    console.log('a')
     this.props.history.push('/gallery')
+  }
+  showInput = () => {
+    this.setState({
+      showSearchInput: true
+    })
+  }
+  hideInput = () => {
+    this.setState({
+      showSearchInput: false
+    })
+  }
+  toggleList = () => {
+    this.setState({
+      showGroupList: !this.state.showGroupList
+    })
+  }
+  handleGroupListClick = (e) => {
+    let id = e.target.getAttribute('data-group-id')
+    if(id !== this.state.group) {
+      this.setState({
+        group: id
+      })
+      this.props.onGroupChange(id)
+    }
+    this.toggleList()
+  }
+  search = (e) => {
+    let searchValue = this.state.searchValue.trim()
+    if(searchValue) {
+      this.props.onSearch(searchValue)
+    }
   }
 }
 
