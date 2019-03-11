@@ -147,7 +147,7 @@ class Nav extends Component {
           ) : ''
         }
       </div>
-      <div className="blank"></div>
+      <div className="blank" style={this.props.withBar ? {} : {height: '48px'}}></div>
       </>
     )
   }
