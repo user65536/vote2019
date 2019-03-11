@@ -18,7 +18,7 @@ function _ajax({
   url='#',
   method='GET',
   async=true,
-  timeout=600,
+  timeout=6000,
   dataType='text',
   data=null,
   headers={},
