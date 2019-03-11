@@ -28,7 +28,7 @@ class Toast extends Component {
           </div>
           <div className="warn-wrap">
             <div className="left">
-              {this.state.warnText ? <span className="iconfont icon-xianshi_jinggao"></span> : ''}
+              {this.state.warnText ? <span className="iconfont icon-jinggao"></span> : ''}
               <span className="warn-text">{this.state.warnText}</span>
             </div>
             <div className="right">
