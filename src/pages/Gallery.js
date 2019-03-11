@@ -24,7 +24,11 @@ class Gallery extends Component {
   render () {
     return (
       <div className="wrapper-gallery">
-        <Nav>
+        <Nav 
+          withBar
+          onGroupChange={(id) => {console.log(id)}}
+          onSearch={(value) => {console.log(value)}}
+        >
           <>
             {/* <div className="group">
               <span className="group-name">全部分组</span>
