@@ -107,7 +107,7 @@ class Detail extends Component {
                     </div>
                     <div className="info">
                       <span className="name ">成员</span>
-                      <span className="iconfont icon-chengyuan1 icon-small"></span>
+                      <span className="iconfont icon-chengyuan"></span>
                       <span className="value">{this.state.info.member}</span>
                     </div>
                   </div>
