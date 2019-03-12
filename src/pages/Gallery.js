@@ -14,7 +14,7 @@ class Gallery extends Component {
  }
 
  componentDidMount() {
-   vote.getProjectList('all').then((projects) => {
+   vote.getProjectList('0').then((projects) => {
     this.setState({
       projects
     })
@@ -26,8 +26,8 @@ class Gallery extends Component {
       <div className="wrapper-gallery">
         <Nav 
           withBar
-          onGroupChange={(id) => {console.log(id)}}
-          onSearch={(value) => {console.log(value)}}
+          onGroupChange={this.changeGroup}
+          onSearch={this.search}
         >
           <>
             {/* <div className="group">
@@ -57,6 +57,32 @@ class Gallery extends Component {
   }
   navigateToDetail(id) {
     this.props.history.push(`/detail/${id}`)
+  }
+  changeGroup = id => {
+    this.setState({
+      projects: []
+    })
+    vote.getProjectList(id).then((projects) => {
+      this.setState({
+        projects
+      })
+    }).catch(page.showAlert)
+  }
+  search = word => {
+    this.setState({
+      projects: []
+    })
+    vote.search(word).then(list => {
+      if(list.length === 0) {
+        page.showAlert("无结果")
+      } else {
+        this.setState({
+          projects: list
+        })
+      }
+    }).catch((warn) => {
+      page.showAlert(warn)
+    })
   }
 }
 
