@@ -11,7 +11,7 @@ import '../styles/nav.styl'
 class Nav extends Component {
   state = {
     group: '0',
-    groupListName: ['所有分类', '字数不一样的分类', '好多分类', '第四种分类', '不是最后一个分类', '最后的分类'],
+    groupListName: ['所有分类', '字数不一样的分类', '好多分类', '第四种分类', '不是最后一个分类'],
     showGroupList: false,
     showSearchInput: false,
     loginState: false,
@@ -78,6 +78,7 @@ class Nav extends Component {
         <input 
           value={this.state.searchValue}
           onChange={(e) => {this.setState({searchValue: e.currentTarget.value})}}
+          onKeyDown={this.testEnter}
           onFocus={this.showInput}
           onBlur={this.hideInput}
           type="text" 
@@ -189,10 +190,15 @@ class Nav extends Component {
     }
     this.toggleList()
   }
-  search = (e) => {
+  search = () => {
     let searchValue = this.state.searchValue.trim()
     if(searchValue) {
       this.props.onSearch(searchValue)
+    }
+  }
+  testEnter = e => {
+    if(e.which === 13) {
+      this.search()
     }
   }
 }
