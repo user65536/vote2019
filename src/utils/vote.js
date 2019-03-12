@@ -14,7 +14,8 @@ const apiAddr = {
   voteNow: '/api/vote',
   getVoteRecord: '/api/voteRecord',
   getTotalVote: '/api/totalVote',
-  getImage: '/api/image'
+  getImage: '/api/image',
+  search: '/api/searchProjectList'
 }
 for (let [k, v] of Object.entries(apiAddr) ) {
   apiAddr[k] = `${host}${v}`
@@ -89,12 +90,14 @@ export default {
     })
   },
   getProjectList (category) {
-    if(category === 'all') {
+    if(category === '0') {
       category = ''
+    } else {
+      category = `/${category}`
     }
     return new Promise((resolve, reject) => {
       ajax({
-        url: apiAddr.getProjectList + `${category}`,
+        url: `${apiAddr.getProjectList}${category}`,
         method: 'GET'
       }).then( res => {
         if(res.list) {
@@ -196,6 +199,23 @@ export default {
         }
       }).catch(() => {
         reject("请求失败")
+      })
+    })
+  },
+  search (word) {
+    return new Promise((resolve, reject) => {
+      ajax({
+        url: apiAddr.search,
+        method: 'POST',
+        data: forMatData({word})
+      }).then(res => {
+        if(res.state) {
+          resolve(res.pList)
+        } else {
+          reject("搜索失败")
+        }
+      }).catch(() => {
+        reject("网络错误")
       })
     })
   }
