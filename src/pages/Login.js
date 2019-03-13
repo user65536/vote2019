@@ -53,9 +53,9 @@ class Login extends Component {
           </div>
           <div className="input-bar-wrap pass">
             <span className="iconfont icon-mima icon-pass"></span>
-            <input type="password" className="pass-input" placeholder="请输入密码" ref={this.passInp} onInput={this.input} />
+            <input onKeyDown={this.testEnter} type="password" className="pass-input" placeholder="请输入密码" ref={this.passInp} onInput={this.input} />
             <div className="warn" style={{display: this.state.warnText ? "block" : "none" }}>
-              <span className="iconfont icon-xianshi_jinggao icon-warn"></span>
+              <span className="iconfont icon-jinggao icon-warn"></span>
               <span className="warn-text">{this.state.warnText}</span>
             </div>
           </div>
@@ -89,7 +89,8 @@ class Login extends Component {
             let {search} = this.props.location
             const info = {
               "wrong password": "用户名或密码错误",
-              "no such username": "用户名或密码错误"
+              "no such username": "用户名或密码错误",
+              "banned": "尝试次数过多"
             }
             if(response.state) {
               page.showAlert("登录成功")
@@ -124,7 +125,11 @@ class Login extends Component {
       warnText: ''
     })
   }
-
+  testEnter = (e) => {
+    if(e.which === 13) {
+      this.login()
+    }
+  }
 }
 
 export default Login;
