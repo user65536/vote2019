@@ -184,7 +184,8 @@ class Nav extends Component {
     let id = e.target.getAttribute('data-group-id')
     if(id !== this.state.group) {
       this.setState({
-        group: id
+        group: id,
+        searchValue: ''
       })
       this.props.onGroupChange(id)
     }
@@ -193,6 +194,9 @@ class Nav extends Component {
   search = () => {
     let searchValue = this.state.searchValue.trim()
     if(searchValue) {
+      this.setState({
+        group: '0'
+      })
       this.props.onSearch(searchValue)
     }
   }
