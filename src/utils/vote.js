@@ -1,10 +1,10 @@
 import ajax from './_ajax'
 
 const config = {
-  mock: true
+  mock: false
 }
 
-const host = config.mock ? 'https://result.eolinker.com/Cd3uNIt2f3c1f80117d47fc916e8ce8d799404697481ae5?uri=' : 'http://10.102.251.251:8000' ;
+const host = config.mock ? 'https://result.eolinker.com/Cd3uNIt2f3c1f80117d47fc916e8ce8d799404697481ae5?uri=' : '' ;
 // 'https://result.eolinker.com/Cd3uNIt2f3c1f80117d47fc916e8ce8d799404697481ae5?uri=';
 // "http://10.102.251.251:8000"
 
