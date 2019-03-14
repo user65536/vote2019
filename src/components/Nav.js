@@ -182,7 +182,7 @@ class Nav extends Component {
   }
   handleGroupListClick = (e) => {
     let id = e.target.getAttribute('data-group-id')
-    if(id !== this.state.group) {
+    if(true || id !== this.state.group) {
       this.setState({
         group: id,
         searchValue: ''
