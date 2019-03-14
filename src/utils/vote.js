@@ -144,7 +144,11 @@ export default {
     //     reject("验证码获取失败")
     //   })
     // })
-    return Promise.resolve(`${apiAddr.getCaptcha}?code=${Math.round(Math.random()*10000000)}`)
+    if(config.mock) {
+      return Promise.resolve(`https://result.eolinker.com/Cd3uNIt2f3c1f80117d47fc916e8ce8d799404697481ae5?uri=/api/captcha`)
+    } else {
+      return Promise.resolve(`${apiAddr.getCaptcha}?code=${Math.round(Math.random()*10000000)}`)
+    }
   },
   voteNow ({id, captcha}) {
     return new Promise((resolve, reject) => {
