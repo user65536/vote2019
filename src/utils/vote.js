@@ -1,13 +1,18 @@
 import ajax from './_ajax'
 
-const host = '';
+const config = {
+  mock: true
+}
+
+const host = config.mock ? 'https://result.eolinker.com/Cd3uNIt2f3c1f80117d47fc916e8ce8d799404697481ae5?uri=' : 'http://10.102.251.251:8000' ;
+// 'https://result.eolinker.com/Cd3uNIt2f3c1f80117d47fc916e8ce8d799404697481ae5?uri=';
 // "http://10.102.251.251:8000"
 
 const apiAddr = {
   login: '/api/login',
   logout: '/api/logout',
   checkLogin: '/api/checkLogin',
-  getRemainVOte: '/api/getRemainVote',
+  getRemainVote: '/api/getRemainVote',
   getProjectList: '/api/projectList',
   getProjectDetail: '/api/project',
   getCaptcha: '/api/captcha',
@@ -60,7 +65,7 @@ export default {
   getVoteLeft () {
     return new Promise((resolve, reject) => {
       ajax({
-        url: apiAddr.getRemainVOte,
+        url: apiAddr.getRemainVote,
         method: 'GET'
       }).then( (res) => {
         if(res.state) {
@@ -97,7 +102,7 @@ export default {
     }
     return new Promise((resolve, reject) => {
       ajax({
-        url: `${apiAddr.getProjectList}${category}`,
+        url: config.mock ? `${apiAddr.getProjectList}/{category}` : `${apiAddr.getProjectList}${category}`,
         method: 'GET'
       }).then( res => {
         if(res.list) {
@@ -114,7 +119,7 @@ export default {
   getProjectDetail (id) {
     return new Promise((resolve, reject) => {
       ajax({
-        url: apiAddr.getProjectDetail + `/${id}`,
+        url: config.mock ? `${apiAddr.getProjectDetail}/{id}` : apiAddr.getProjectDetail + `/${id}`,
         method: 'GET'
       }).then((res) => {
         if(res.state) {
