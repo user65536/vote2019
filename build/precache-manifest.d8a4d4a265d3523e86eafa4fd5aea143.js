@@ -4,8 +4,8 @@ self.__precacheManifest = [
     "url": "./static/media/digital.05d1f111.ttf"
   },
   {
-    "revision": "9937a04bea6d8db0b7a0",
-    "url": "./static/css/main.829eef64.chunk.css"
+    "revision": "d50b0c60af78c912a9a5",
+    "url": "./static/css/main.80343253.chunk.css"
   },
   {
     "revision": "9eb600ee07a27cdad64f",
@@ -24,31 +24,31 @@ self.__precacheManifest = [
     "url": "./static/media/logo2.ad1bcdde.png"
   },
   {
-    "revision": "9937a04bea6d8db0b7a0",
-    "url": "./static/js/main.9937a04b.chunk.js"
+    "revision": "d50b0c60af78c912a9a5",
+    "url": "./static/js/main.d50b0c60.chunk.js"
   },
   {
     "revision": "820bcda609a69b4222e1a26f4dfdc661",
     "url": "./static/media/yuan.820bcda6.ttf"
   },
   {
-    "revision": "5e97b077ffb5ae3be780d0d9a6e58fe9",
-    "url": "./static/media/iconfont.5e97b077.ttf"
+    "revision": "2c44fc4759c1670e4d58970a157dbf11",
+    "url": "./static/media/iconfont.2c44fc47.woff"
   },
   {
-    "revision": "2c9245c57390dceaeeddb7c44a9586a7",
-    "url": "./static/media/iconfont.2c9245c5.woff"
+    "revision": "7b19b6adaf2184d009b7ec70e9b1f858",
+    "url": "./static/media/iconfont.7b19b6ad.eot"
   },
   {
-    "revision": "48946fc3aed902c56fde5c50a7f15fa2",
-    "url": "./static/media/iconfont.48946fc3.eot"
+    "revision": "395bc1d381f51f069eabc9a16af5b1c1",
+    "url": "./static/media/iconfont.395bc1d3.ttf"
   },
   {
-    "revision": "fe57db44bc49a8b98790140b48bde977",
-    "url": "./static/media/iconfont.fe57db44.svg"
+    "revision": "981bc37aef3b969dff074debc542d949",
+    "url": "./static/media/iconfont.981bc37a.svg"
   },
   {
-    "revision": "e0c38f56368c072d165c95afbb243166",
+    "revision": "e01f0e77484c03f21d2363c0fff25cf4",
     "url": "./index.html"
   }
 ];
