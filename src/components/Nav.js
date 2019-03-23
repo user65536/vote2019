@@ -11,7 +11,7 @@ import '../styles/nav.styl'
 class Nav extends Component {
   state = {
     group: '0',
-    groupListName: ['所有分类', '字数不一样的分类', '好多分类', '第四种分类', '不是最后一个分类'],
+    groupListName: ['所有分类', '第一种分类', '第二种分类', '第三种分类', '第四种分类'],
     showGroupList: false,
     showSearchInput: false,
     loginState: false,
