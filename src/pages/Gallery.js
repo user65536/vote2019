@@ -69,20 +69,25 @@ class Gallery extends Component {
     }).catch(page.showAlert)
   }
   search = word => {
+    console.log(word)
     this.setState({
       projects: []
     })
-    vote.search(word).then(list => {
-      if(list.length === 0) {
-        page.showAlert("无结果")
-      } else {
-        this.setState({
-          projects: list
-        })
-      }
-    }).catch((warn) => {
-      page.showAlert(warn)
-    })
+    if(word.trim()) {
+      vote.search(word).then(list => {
+        if(list.length === 0) {
+          page.showAlert("无结果")
+        } else {
+          this.setState({
+            projects: list
+          })
+        }
+      }).catch((warn) => {
+        page.showAlert(warn)
+      })
+    } else {
+      this.changeGroup('0')
+    }
   }
 }
 

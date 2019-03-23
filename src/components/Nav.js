@@ -193,7 +193,7 @@ class Nav extends Component {
   }
   search = () => {
     let searchValue = this.state.searchValue.trim()
-    if(searchValue) {
+    if(true || searchValue) {
       this.setState({
         group: '0'
       })

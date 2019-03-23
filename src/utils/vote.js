@@ -1,4 +1,5 @@
 import ajax from './_ajax'
+import img from '../static/bupt5.jpg'
 
 const config = {
   mock: false
@@ -19,7 +20,7 @@ const apiAddr = {
   voteNow: '/api/vote',
   getVoteRecord: '/api/voteRecord',
   getTotalVote: '/api/totalVote',
-  getImage: '/api/image',
+  getImage: '/image',
   search: '/api/searchProjectList'
 }
 for (let [k, v] of Object.entries(apiAddr) ) {
@@ -107,7 +108,8 @@ export default {
       }).then( res => {
         if(res.list) {
           res.list.forEach((project, index) => {
-            project.imgSrc = project.img ? `${apiAddr.getImage}/${project.id}/${project.img}` : 'https://www.meansky.cn/picture/bupt5.jpg'
+            project.imgSrc = project.img ? `${apiAddr.getImage}/${project.id}/${project.img}` : img
+            // project.imgSrc = `${apiAddr.getImage}/${project.id}/${project.img}`            
           })
           resolve(res.list)
         } else {
@@ -123,7 +125,8 @@ export default {
         method: 'GET'
       }).then((res) => {
         if(res.state) {
-          res.list.imgSrc =  res.list.img ? `${apiAddr.getImage}/${res.list.id}/${res.list.img}` : 'https://www.meansky.cn/picture/bupt5.jpg'
+          res.list.imgSrc =  res.list.img ? `${apiAddr.getImage}/${res.list.id}/${res.list.img}` : img
+          // res.list.imgSrc = `${apiAddr.getImage}/${res.list.id}/${res.list.img}`          
           resolve(res.list)
         } else {
           reject("404")
