@@ -96,7 +96,7 @@ class Gallery extends Component {
             reject(warn)
           })
         } else {
-          
+          reject(-1)
         }
       })
     }
@@ -118,7 +118,6 @@ class Gallery extends Component {
         projects
       })
     }).catch(() => {
-
     })
   }
   search = word => {
@@ -145,7 +144,13 @@ class Gallery extends Component {
       this.setState({
         projects
       })
-    }).catch(page.showAlert)
+    }).catch(e => {
+      if(e === -1) {
+        this.changeGroup('0')
+      } else {
+        page.showAlert(e)
+      }
+    })
   }
 }
 
