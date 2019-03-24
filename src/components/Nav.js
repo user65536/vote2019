@@ -4,6 +4,7 @@ import store from '../store/store'
 
 import vote from '../utils/vote'
 import page from '../utils/page'
+import storage from '../utils/storage'
 
 import '../styles/nav.styl'
 
@@ -22,6 +23,13 @@ class Nav extends Component {
 
 
   componentDidMount () {
+    let previousList = storage.getProjectList()
+    if(previousList) {
+      this.setState({
+        group: previousList.group,
+        searchValue: previousList.searchValue
+      })
+    }
     store.subscribe(() => {
       if(store.getState().voteLeft >= 0) {
         this.setState({
