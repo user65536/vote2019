@@ -6,8 +6,6 @@ const config = {
 }
 
 const host = config.mock ? 'https://result.eolinker.com/Cd3uNIt2f3c1f80117d47fc916e8ce8d799404697481ae5?uri=' : '' ;
-// 'https://result.eolinker.com/Cd3uNIt2f3c1f80117d47fc916e8ce8d799404697481ae5?uri=';
-// "http://10.102.251.251:8000"
 
 const apiAddr = {
   login: '/api/login',
@@ -222,6 +220,9 @@ export default {
         data: forMatData({word})
       }).then(res => {
         if(res.state) {
+          res.pList.forEach((project, index) => {
+            project.imgSrc = project.img ? `${apiAddr.getImage}/${project.id}/${project.img}` : img
+          })
           resolve(res.pList)
         } else {
           reject("搜索失败")
