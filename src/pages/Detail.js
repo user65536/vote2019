@@ -9,6 +9,8 @@ import loadImg from '../static/load.png'
 import vote from '../utils/vote'
 import page from '../utils/page'
 
+import config from '../utils/config'
+
 import '../styles/detail.styl'
 
 class Detail extends Component {
@@ -126,7 +128,7 @@ class Detail extends Component {
 
   vote = () => {
     vote.checkLogin().then(({state}) => {
-      if(!state) {
+      if(!state && !config.mock) {
         page.showAlert("请先登录")
         this.props.history.push(`/login?from=/detail/${this.props.match.params.id}`)
       } else {

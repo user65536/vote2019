@@ -1,9 +1,8 @@
 import ajax from './_ajax'
 import img from '../static/bupt5.jpg'
+import config from './config.js'
 
-const config = {
-  mock: false
-}
+
 
 const host = config.mock ? 'https://result.eolinker.com/Cd3uNIt2f3c1f80117d47fc916e8ce8d799404697481ae5?uri=' : '' ;
 
