@@ -7,4 +7,5 @@
 
 - 无需登录即可完成投票的操作
 - 数据通过ajax发送至mock平台[eolink](https://www.eolinker.com/),因此分类列表返回的数据相同
+- 验证码为mock数据,因此点击切换时不会更改
 
