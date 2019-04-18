@@ -7,6 +7,7 @@ import Detail from './pages/Detail';
 import Alert from './components/Alert.js'
 import NotFound from './pages/NotFound'
 import Table from './pages/Table'
+import Card from './pages/Card'
 
 import './font/iconfont.css'
 import './styles/reset.css'
@@ -25,6 +26,7 @@ class App extends Component {
               <Route path="/gallery" component={Gallery}></Route>
               <Route path="/detail/:id" component={Detail}></Route>
               <Route path="/table" component={Table}></Route>
+              <Route path="/card" component={Card}></Route>
               <Route path="/" component={NotFound}></Route>
             </Switch>
           </>
