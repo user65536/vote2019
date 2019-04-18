@@ -18,7 +18,8 @@ const apiAddr = {
   getVoteRecord: '/api/voteRecord',
   getTotalVote: '/api/totalVote',
   getImage: '/image',
-  search: '/api/searchProjectList'
+  search: '/api/searchProjectList',
+  activate: '/api/activate' // uid 932DFBFE 2469264382
 }
 for (let [k, v] of Object.entries(apiAddr) ) {
   apiAddr[k] = `${host}${v}`
@@ -228,6 +229,22 @@ export default {
         }
       }).catch(() => {
         reject("网络错误")
+      })
+    })
+  },
+  activate (value) {
+    return new Promise((resolve, reject) => {
+      ajax({
+        url: `${apiAddr.activate}/${value}`,
+        method: 'GET',
+      }).then(res => {
+        if(res.state) {
+          resolve(res.info)
+        } else {
+          reject(0)
+        }
+      }).catch((err) => {
+        reject(-1)
       })
     })
   }
