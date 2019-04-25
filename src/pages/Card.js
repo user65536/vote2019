@@ -9,8 +9,8 @@ class Card extends Component {
   state = {
     error: -1, // -1 waiting 0 suc 1 error 2 pending
     successInfo: {
-      name: '孟祥冀',
-      number: '2017210550'
+      name: '',
+      number: ''
     },
     waitingTimer: null
   }
@@ -27,11 +27,11 @@ class Card extends Component {
   }
   activate = (value) => {
     clearTimeout(this.waitingTimer)
-    this.setTimer(2000)
     this.setState({
       error: 2
     })
     vote.activate(value).then(info => {
+      this.setTimer(2000)
       this.setState({
         successInfo: {
           name: info.name,
