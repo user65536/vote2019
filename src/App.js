@@ -8,6 +8,7 @@ import Alert from './components/Alert.js'
 import NotFound from './pages/NotFound'
 import Table from './pages/Table'
 import Card from './pages/Card'
+import Screen from './pages/Screen'
 
 import './font/iconfont.css'
 import './styles/reset.css'
@@ -21,6 +22,7 @@ class App extends Component {
             <Alert></Alert>
             <Switch>
               <Route path="/" exact component={Login}></Route>
+              <Route path="/screen" component={Screen}></Route>
               <Route path="/login" component={Login}></Route>
               <Route path="/404" component={NotFound}></Route>
               <Route path="/gallery" component={Gallery}></Route>
