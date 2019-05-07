@@ -22,7 +22,7 @@ class Toast extends Component {
           <div className="title">确认投票</div>
           <div className="input-wrap">
             <div className="input">
-              <input ref={this.codeInput} type="text"/>
+              <input onKeyDown={this.testEnter} ref={this.codeInput} type="text"/>
             </div>
             <img className="code" src={this.state.code} alt="验证码"/>
           </div>
@@ -80,6 +80,11 @@ class Toast extends Component {
     this.setState({
       submitLock: operate === 'lock'
     })
+  }
+  testEnter = (e) => {
+    if(e.which === 13) {
+      this.submitCode()
+    }
   }
 }
 
