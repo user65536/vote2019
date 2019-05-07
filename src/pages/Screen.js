@@ -16,26 +16,26 @@ class Screen extends Component {
     scroll: false,
     voteNumber: '00000',
     top5List: [
-      {
-        name: '艺考美术生社群——艺伴',
-        voteNumber: 1532
-      },
-      {
-        name: '潜在行为模式下的连续兴趣点推荐算法研究',
-        voteNumber: 1532
-      },
-      {
-        name: '基于Android的平面学习媒体增强系统',
-        voteNumber: 1532
-      },
-      {
-        name: '分布式可视化计算平台',
-        voteNumber: 1532
-      },
-      {
-        name: '基于纳米尺度亚波长光栅的硅基高速、大功率、低功耗混合集成光探测器制备及其研究',
-        voteNumber: 1532
-      }
+      // {
+      //   name: '艺考美术生社群——艺伴',
+      //   voteNumber: 1532
+      // },
+      // {
+      //   name: '潜在行为模式下的连续兴趣点推荐算法研究',
+      //   voteNumber: 1532
+      // },
+      // {
+      //   name: '基于Android的平面学习媒体增强系统',
+      //   voteNumber: 1532
+      // },
+      // {
+      //   name: '分布式可视化计算平台',
+      //   voteNumber: 1532
+      // },
+      // {
+      //   name: '基于纳米尺度亚波长光栅的硅基高速、大功率、低功耗混合集成光探测器制备及其研究',
+      //   voteNumber: 1532
+      // }
     ]
   }
   componentDidMount () {
@@ -55,7 +55,6 @@ class Screen extends Component {
         currentList: list.slice(0, 6),
         nextList: list.slice(6, 12)
       })
-      console.log(this.state)
     }).catch((e) => {
       console.log(e)
     })
@@ -77,7 +76,7 @@ class Screen extends Component {
               {
                 this.state.top5List.map((project, index) => {
                   return (
-                    <li className="top5-item">
+                    <li key={index} className="top5-item">
                       <div className="circle-area">
                         <div className="circle"></div>
                       </div>
@@ -230,6 +229,13 @@ class Screen extends Component {
     }).catch((e) => {
       console.log(e)
     })
+    vote.getTop5().then(list => {
+      this.setState({
+        top5List: list
+      })
+    }).catch(e => {
+
+    })
     window.vote.refreshTotalTimer = setInterval(() => {
       vote.getTotalVote().then(number => {
         this.setState({
@@ -237,6 +243,13 @@ class Screen extends Component {
         })
       }).catch((e) => {
         console.log(e)
+      })
+      vote.getTop5().then(list => {
+        this.setState({
+          top5List: list
+        })
+      }).catch(e => {
+  
       })
     }, 5000)
   }
