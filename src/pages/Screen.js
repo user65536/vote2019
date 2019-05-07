@@ -15,9 +15,32 @@ class Screen extends Component {
     nextList: [],
     scroll: false,
     voteNumber: '00000',
+    top5List: [
+      {
+        name: '艺考美术生社群——艺伴',
+        voteNumber: 1532
+      },
+      {
+        name: '潜在行为模式下的连续兴趣点推荐算法研究',
+        voteNumber: 1532
+      },
+      {
+        name: '基于Android的平面学习媒体增强系统',
+        voteNumber: 1532
+      },
+      {
+        name: '分布式可视化计算平台',
+        voteNumber: 1532
+      },
+      {
+        name: '基于纳米尺度亚波长光栅的硅基高速、大功率、低功耗混合集成光探测器制备及其研究',
+        voteNumber: 1532
+      }
+    ]
   }
   componentDidMount () {
     this.addFnToWindow()
+    this.autoGetVoteNumber()
     document.onkeypress= (e) => {
       if(e.which === 13) {
         this.change()
@@ -51,7 +74,20 @@ class Screen extends Component {
           <div className="top5-wrap">
             <div className="text title">TOP5</div>
             <ul className="top5-list">
-              <li className="top5-item">
+              {
+                this.state.top5List.map((project, index) => {
+                  return (
+                    <li className="top5-item">
+                      <div className="circle-area">
+                        <div className="circle"></div>
+                      </div>
+                      <div className="text item-title">{project.name}</div>
+                      <div className="text vote-num">{project.voteNumber}</div>
+                    </li>
+                  )
+                })
+              }
+              {/* <li className="top5-item">
                 <div className="circle-area">
                   <div className="circle"></div>
                 </div>
@@ -85,7 +121,7 @@ class Screen extends Component {
                 </div>
                 <div className="text item-title">基于纳米尺度亚波长光栅的硅基高速、大功率、低功耗混合集成光探测器制备及其研究</div>
                 <div className="text vote-num">1834</div>
-              </li>
+              </li> */}
             </ul>
           </div>
         </div>
@@ -97,7 +133,7 @@ class Screen extends Component {
             <div className="right">
               <div className="total-vote-board">
                 <div className="text board-name">总票数</div>
-                <ScoreBoard number={[1,2,3,4,5]} ></ScoreBoard>
+                <ScoreBoard number={this.state.voteNumber.split("")} ></ScoreBoard>
               </div>
             </div>
           </div>
@@ -110,54 +146,21 @@ class Screen extends Component {
             </div>
             <div className="list-wrap">
               <ul className="project-list">
-                {/* <li className={`project-item item-1 ${this.state.scroll ? "previous" : "current"}`}>
-                  <div className="text text-rank rank">100</div>
-                  <div className="text text-project-item project-title">基于纳米尺度亚波长光栅的硅基高速、大功率、低功耗混合集成光探测器制备及其研究</div>
-                  <div className="text text-leader leader">朱丹峰</div>
-                  <div className="text text-vote-num vote-num">749</div>
-                </li>
-                <li className={`project-item item-2 ${this.state.scroll ? "previous" : "current"}`}>
-                  <div className="text text-rank rank">100</div>
-                  <div className="text text-project-item project-title">基于纳米尺度亚波长光栅的硅基高速、大功率、低功耗混合集成光探测器制备及其研究</div>
-                  <div className="text text-leader leader">朱丹峰</div>
-                  <div className="text text-vote-num vote-num">749</div>
-                </li>
-                <li className={`project-item item-3 ${this.state.scroll ? "previous" : "current"}`}>
-                  <div className="text text-rank rank">100</div>
-                  <div className="text text-project-item project-title">基于纳米尺度亚波长光栅的硅基高速、大功率、低功耗混合集成光探测器制备及其研究</div>
-                  <div className="text text-leader leader">朱丹峰</div>
-                  <div className="text text-vote-num vote-num">749</div>
-                </li>
-                <li className={`project-item item-4 ${this.state.scroll ? "previous" : "current"}`}>
-                  <div className="text text-rank rank">100</div>
-                  <div className="text text-project-item project-title">基于纳米尺度亚波长光栅的硅基高速、大功率、低功耗混合集成光探测器制备及其研究</div>
-                  <div className="text text-leader leader">朱丹峰</div>
-                  <div className="text text-vote-num vote-num">749</div>
-                </li>
-                <li className={`project-item item-5 ${this.state.scroll ? "previous" : "current"}`}>
-                  <div className="text text-rank rank">100</div>
-                  <div className="text text-project-item project-title">基于纳米尺度亚波长光栅的硅基高速、大功率、低功耗混合集成光探测器制备及其研究</div>
-                  <div className="text text-leader leader">朱丹峰</div>
-                  <div className="text text-vote-num vote-num">749</div>
-                </li>
-                <li className={`project-item item-6 ${this.state.scroll ? "previous" : "current"}`}>
-                  <div className="text text-rank rank">100</div>
-                  <div className="text text-project-item project-title">基于纳米尺度亚波长光栅的硅基高速、大功率、低功耗混合集成光探测器制备及其研究</div>
-                  <div className="text text-leader leader">朱丹峰</div>
-                  <div className="text text-vote-num vote-num">749</div>
-                </li> */}
+                <div>
                 {
                   this.state.currentList.map((item, index) => {
                     return (
                       <li key={`current-${item.id}`} className={`project-item item-${index} ${this.state.scroll ? "previous" : "current"}`}>
                       <div className="text text-rank rank">{item.rank}</div>
-                      <div className="text text-project-item project-title">{item.name}</div>
+                      <div className="text wrap-2 text-project-item project-title">{item.name}</div>
                       <div className="text text-leader leader">{item.leader}</div>
                       <div className="text text-vote-num vote-num">{item.voteNumber}</div>
                     </li>
                     )
                   })
                 }
+                </div>
+                <div>
                 {
                   this.state.nextList.map((item, index) => {
                     return (
@@ -168,49 +171,14 @@ class Screen extends Component {
                       key={`next-${item.id}`} 
                       className={`project-item item-${index} ${this.state.scroll ? "current current-withTransition" : "next"}`}>
                         <div className="text text-rank rank">{item.rank}</div>
-                        <div className="text text-project-item project-title">{item.name}</div>
+                        <div className="text wrap-2 text-project-item project-title">{item.name}</div>
                         <div className="text text-leader leader">{item.leader}</div>
                         <div className="text text-vote-num vote-num">{item.voteNumber}</div>
                       </li>
                     )
                   })
                 }
-                {/* <li className={`project-item item-1 ${this.state.scroll ? "current current-withTransition" : "next"}`}>
-                  <div className="text text-rank rank">100</div>
-                  <div className="text text-project-item project-title">基于纳米尺度亚波长光栅的硅基高速、大功率、低功耗混合集成光探测器制备及其研究</div>
-                  <div className="text text-leader leader">朱丹峰</div>
-                  <div className="text text-vote-num vote-num">749</div>
-                </li>
-                <li className={`project-item item-2 ${this.state.scroll ? "current current-withTransition" : "next"}`}>
-                  <div className="text text-rank rank">100</div>
-                  <div className="text text-project-item project-title">基于纳米尺度亚波长光栅的硅基高速、大功率、低功耗混合集成光探测器制备及其研究</div>
-                  <div className="text text-leader leader">朱丹峰</div>
-                  <div className="text text-vote-num vote-num">749</div>
-                </li>
-                <li className={`project-item item-3 ${this.state.scroll ? "current current-withTransition" : "next"}`}>
-                  <div className="text text-rank rank">100</div>
-                  <div className="text text-project-item project-title">基于纳米尺度亚波长光栅的硅基高速、大功率、低功耗混合集成光探测器制备及其研究</div>
-                  <div className="text text-leader leader">朱丹峰</div>
-                  <div className="text text-vote-num vote-num">749</div>
-                </li>
-                <li className={`project-item item-4 ${this.state.scroll ? "current current-withTransition" : "next"}`}>
-                  <div className="text text-rank rank">100</div>
-                  <div className="text text-project-item project-title">基于纳米尺度亚波长光栅的硅基高速、大功率、低功耗混合集成光探测器制备及其研究</div>
-                  <div className="text text-leader leader">朱丹峰</div>
-                  <div className="text text-vote-num vote-num">749</div>
-                </li>
-                <li className={`project-item item-5 ${this.state.scroll ? "current current-withTransition" : "next"}`}>
-                  <div className="text text-rank rank">100</div>
-                  <div className="text text-project-item project-title">基于纳米尺度亚波长光栅的硅基高速、大功率、低功耗混合集成光探测器制备及其研究</div>
-                  <div className="text text-leader leader">朱丹峰</div>
-                  <div className="text text-vote-num vote-num">749</div>
-                </li>
-                <li className={`project-item item-6 ${this.state.scroll ? "current current-withTransition" : "next"}`}>
-                  <div className="text text-rank rank">100</div>
-                  <div className="text text-project-item project-title">基于纳米尺度亚波长光栅的硅基高速、大功率、低功耗混合集成光探测器制备及其研究</div>
-                  <div className="text text-leader leader">朱丹峰</div>
-                  <div className="text text-vote-num vote-num">749</div>
-                </li> */}
+                </div>
               </ul>
             </div>
           </div>
@@ -253,6 +221,24 @@ class Screen extends Component {
     this.setState({
       scroll: true
     })
+  }
+  autoGetVoteNumber = () => {
+    vote.getTotalVote().then(number => {
+      this.setState({
+        voteNumber: number
+      })
+    }).catch((e) => {
+      console.log(e)
+    })
+    window.vote.refreshTotalTimer = setInterval(() => {
+      vote.getTotalVote().then(number => {
+        this.setState({
+          voteNumber: number
+        })
+      }).catch((e) => {
+        console.log(e)
+      })
+    }, 5000)
   }
 }
 
