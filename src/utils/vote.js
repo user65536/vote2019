@@ -249,13 +249,17 @@ export default {
       })
     })
   },
-  voteRecordTop5 () {
+  getTop5 () {
     return new Promise((resolve, reject) => {
       ajax({
         url: `${apiAddr.voteRecordTop5}`,
         method: 'GET'
       }).then(res => {
-        console.log(res)
+        if(res.state) {
+          resolve(res.list)
+        } else {
+          reject(-1)
+        }
       }).catch(() => {
         reject(0)
       })
