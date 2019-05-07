@@ -19,7 +19,8 @@ const apiAddr = {
   getTotalVote: '/api/totalVote',
   getImage: '/image',
   search: '/api/searchProjectList',
-  activate: '/api/activate' // uid 932DFBFE 2469264382
+  activate: '/api/activate', // uid 932DFBFE 2469264382
+  voteRecordTop5: '/api/voteRecordTop5'
 }
 for (let [k, v] of Object.entries(apiAddr) ) {
   apiAddr[k] = `${host}${v}`
@@ -245,6 +246,18 @@ export default {
         }
       }).catch((err) => {
         reject(-1)
+      })
+    })
+  },
+  voteRecordTop5 () {
+    return new Promise((resolve, reject) => {
+      ajax({
+        url: `${apiAddr.voteRecordTop5}`,
+        method: 'GET'
+      }).then(res => {
+        console.log(res)
+      }).catch(() => {
+        reject(0)
       })
     })
   }
