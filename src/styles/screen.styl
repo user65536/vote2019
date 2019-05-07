@@ -106,6 +106,7 @@ transition-in-duration = 0.8s
           .project-item
             position absolute
             display flex
+            align-items center
             box-sizing border-box
             width 65.4vw
             height 10.4vh
@@ -118,6 +119,10 @@ transition-in-duration = 0.8s
               font-size 33px
               color #9b9ca2
             .text-project-item
+              // flex-direction column
+              // justify-content center
+              // height 48px
+              line-height 28px
               font-size 22px
               color #595b62
               letter-spacing 1px
@@ -184,3 +189,9 @@ transition-in-duration = 0.8s
   .current-withTransition:nth-of-type(6n+6) {
     transition: transform transition-in-duration cell-in-transition 1.5s;
   }
+  .wrap-2
+    display:-webkit-box; 
+    overflow:hidden; 
+    text-overflow:ellipsis;
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp:2; 
