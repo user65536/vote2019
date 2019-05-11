@@ -9,6 +9,7 @@ import NotFound from './pages/NotFound'
 import Table from './pages/Table'
 import Card from './pages/Card'
 import Screen from './pages/Screen'
+import Lottery from './pages/Lottery'
 
 import './font/iconfont.css'
 import './styles/reset.css'
@@ -29,6 +30,7 @@ class App extends Component {
               <Route path="/detail/:id" component={Detail}></Route>
               <Route path="/table" component={Table}></Route>
               <Route path="/card" component={Card}></Route>
+              <Route path="/lottery" component={Lottery}></Route>
               <Route path="/" component={NotFound}></Route>
             </Switch>
           </>
