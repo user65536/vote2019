@@ -20,7 +20,10 @@ const apiAddr = {
   getImage: '/image',
   search: '/api/searchProjectList',
   activate: '/api/activate', // uid 932DFBFE 2469264382
-  voteRecordTop5: '/api/voteRecordTop5'
+  voteRecordTop5: '/api/voteRecordTop5',
+  fillUpDetail: '/api/fillUpDetail',
+  getLottery: '/api/getLottery',
+  checkRoll: '/api/checkRoll'
 }
 for (let [k, v] of Object.entries(apiAddr) ) {
   apiAddr[k] = `${host}${v}`
@@ -260,6 +263,78 @@ export default {
         } else {
           reject(-1)
         }
+      }).catch(() => {
+        reject(0)
+      })
+    })
+  },
+  drawLottery () {
+    // return new Promise((resolve, reject) => {
+    //   ajax({
+    //     url: `${apiAddr.getLottery}`,
+    //     method: 'GET'
+    //   }).then(res => {
+    //     console.log(res)
+    //     if(res.state) {
+    //       // eslint-disable-next-line
+    //       (res.prize == '-1') && (res.prize = '0' );
+    //       resolve(res.prize)
+    //     } else {
+    //       if(res.msg === 'already pooled') {
+    //         reject(res.msg)
+    //       }
+    //     }
+    //   }).catch(() => {
+    //     reject(0)
+    //   })
+    // })
+    return new Promise((resolve, reject) => {
+      setTimeout(function () {
+        resolve(1)
+      }, 500)
+    })
+  },
+  checkRoll () {
+    // return new Promise((resolve, reject) => {
+    //   ajax({
+    //     url: `${apiAddr.checkRoll}`,
+    //     method: 'GET'
+    //   }).then(res => {
+    //     if(res.state) {
+    //       resolve('-1')
+    //     } else {
+    //       switch (res.msg) {
+    //         case 'already pooled' :
+    //           // eslint-disable-next-line
+    //           (res.prize == '-1') && (res.prize = '0' );
+    //           resolve(res.prize)
+    //           break;
+    //         case 'vote first' :
+    //           resolve('-2')
+    //           break;
+    //         default :
+    //           break;
+    //       }
+    //     }
+    //   }).catch(() => {
+    //     reject(0)
+    //   })
+    // })
+    return new Promise((resolve, reject) => {
+      setTimeout(function () {
+        resolve('-1')
+      }, 500)
+    })
+  },
+  fillForm (data) {
+    return new Promise((resolve, reject) => {
+      ajax({
+        url: apiAddr.fillUpDetail,
+        method: 'POST',
+        data: forMatData(data)
+      }).then(res => {
+        console.log(res)
+        resolve(0)
       }).catch(() => {
         reject(0)
       })
