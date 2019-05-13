@@ -17,8 +17,8 @@
       background-image url('../static/lottery.png')
       background-position center center
       background-size cover
-      transition transform ease-in-out 2s
-      transform rotate(700deg)
+      transition transform cubic-bezier(0.42, 0, 0.04, 0.99) 2s
+      // transform rotate(0deg)
   .start
     margin-top 36px
     width 200px
@@ -29,3 +29,34 @@
     line-height 36px
     font-size 18px
     color #C78223
+    cursor pointer
+    &.disable
+      color #BAB5AE
+      border 2px solid #BAB5AE
+  .form-wrap
+    margin-top 36px
+    padding-bottom 48px
+    .info
+      color #636363
+    .form
+      margin-top 12px
+      .form-item
+        margin-bottom 12px
+        display flex
+        align-items center
+        .item-name
+          width 48px
+          flex 0 0 48px
+          padding-right 12px
+        .input
+          width 10px
+          flex 1 1 10px
+          height 24px
+          border 1px solid lightgray
+          border-radius 2px
+    .submit
+      margin-top 24px
+      font-size 18px
+      text-align center
+      color #6377CB
+      cursor pointer
