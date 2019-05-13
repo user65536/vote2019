@@ -133,6 +133,7 @@ class Nav extends Component {
                     <span className="num">{this.state.ticketLeft}</span>
                   </div>
                   <div className="user">{this.state.userID}</div>
+                  <div className="lottery" onClick={this.navigateToLottery}></div>
                   <div onClick={this.logout} className="quit">
                     <span className="iconfont icon-dengchu"></span>
                   </div>
@@ -161,7 +162,12 @@ class Nav extends Component {
     )
   }
   navigateToLogin = () => {
-    this.props.history.push("/login")
+    this.props.history.push( `/login?from=${this.props.location.pathname}`)
+  }
+  navigateToLottery = () => {
+    if(this.props.location.pathname !== '/lottery') {
+      this.props.history.push( `/lottery`)
+    }
   }
   logout = () => {
     vote.logout().then((res) => {
