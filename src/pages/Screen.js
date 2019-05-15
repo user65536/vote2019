@@ -27,7 +27,7 @@ class Screen extends Component {
     }
     window.vote.scrollTimer = setInterval(() => {
       this.change()
-    }, 3000)
+    }, 15000)
     vote.getVoteRecord().then(list => {
       this.setState({
         list: list,
@@ -37,9 +37,6 @@ class Screen extends Component {
     }).catch((e) => {
       console.log(e)
     })
-    // window.vote.scrollTimer = setInterval(() => {
-    //   this.change()
-    // }, 10000)
   }
   render () {
     return (
@@ -65,41 +62,6 @@ class Screen extends Component {
                   )
                 })
               }
-              {/* <li className="top5-item">
-                <div className="circle-area">
-                  <div className="circle"></div>
-                </div>
-                <div className="text item-title">艺考美术生社群--艺伴</div>
-                <div className="text vote-num">1834</div>
-              </li>
-              <li className="top5-item">
-                <div className="circle-area">
-                  <div className="circle"></div>
-                </div>
-                <div className="text item-title">潜在行为模式下的连续兴趣点推荐算法研究</div>
-                <div className="text vote-num">1834</div>
-              </li>
-              <li className="top5-item">
-                <div className="circle-area">
-                  <div className="circle"></div>
-                </div>
-                <div className="text item-title">基于Android的平面学习媒体增强系统</div>
-                <div className="text vote-num">1834</div>
-              </li>
-              <li className="top5-item">
-                <div className="circle-area">
-                  <div className="circle"></div>
-                </div>
-                <div className="text item-title">分布式可视化计算平台</div>
-                <div className="text vote-num">1834</div>
-              </li>
-              <li className="top5-item">
-                <div className="circle-area">
-                  <div className="circle"></div>
-                </div>
-                <div className="text item-title">基于纳米尺度亚波长光栅的硅基高速、大功率、低功耗混合集成光探测器制备及其研究</div>
-                <div className="text vote-num">1834</div>
-              </li> */}
             </ul>
           </div>
         </div>
