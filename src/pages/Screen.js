@@ -15,28 +15,7 @@ class Screen extends Component {
     nextList: [],
     scroll: false,
     voteNumber: '00000',
-    top5List: [
-      // {
-      //   name: '艺考美术生社群——艺伴',
-      //   voteNumber: 1532
-      // },
-      // {
-      //   name: '潜在行为模式下的连续兴趣点推荐算法研究',
-      //   voteNumber: 1532
-      // },
-      // {
-      //   name: '基于Android的平面学习媒体增强系统',
-      //   voteNumber: 1532
-      // },
-      // {
-      //   name: '分布式可视化计算平台',
-      //   voteNumber: 1532
-      // },
-      // {
-      //   name: '基于纳米尺度亚波长光栅的硅基高速、大功率、低功耗混合集成光探测器制备及其研究',
-      //   voteNumber: 1532
-      // }
-    ]
+    top5List: []
   }
   componentDidMount () {
     this.addFnToWindow()
