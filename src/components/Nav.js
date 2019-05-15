@@ -12,7 +12,7 @@ import '../styles/nav.styl'
 class Nav extends Component {
   state = {
     group: '0',
-    groupListName: ['所有分类', '第一种分类', '第二种分类', '第三种分类', '第四种分类'],
+    groupListName: ["所有分类", "创业邮我", "创意设计", "机器人", "教育文化", "数字娱乐", "信息服务", "智慧生活", "智能硬件"],
     showGroupList: false,
     showSearchInput: false,
     loginState: false,
