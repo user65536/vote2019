@@ -269,62 +269,62 @@ export default {
     })
   },
   drawLottery () {
-    // return new Promise((resolve, reject) => {
-    //   ajax({
-    //     url: `${apiAddr.getLottery}`,
-    //     method: 'GET'
-    //   }).then(res => {
-    //     console.log(res)
-    //     if(res.state) {
-    //       // eslint-disable-next-line
-    //       (res.prize == '-1') && (res.prize = '0' );
-    //       resolve(res.prize)
-    //     } else {
-    //       if(res.msg === 'already pooled') {
-    //         reject(res.msg)
-    //       }
-    //     }
-    //   }).catch(() => {
-    //     reject(0)
-    //   })
-    // })
     return new Promise((resolve, reject) => {
-      setTimeout(function () {
-        resolve(1)
-      }, 500)
+      ajax({
+        url: `${apiAddr.getLottery}`,
+        method: 'GET'
+      }).then(res => {
+        console.log(res)
+        if(res.state) {
+          // eslint-disable-next-line
+          (res.prize == '-1') && (res.prize = '0' );
+          resolve(res.prize)
+        } else {
+          if(res.msg === 'already pooled') {
+            reject(res.msg)
+          }
+        }
+      }).catch(() => {
+        reject(0)
+      })
     })
+    // return new Promise((resolve, reject) => {
+    //   setTimeout(function () {
+    //     resolve(1)
+    //   }, 500)
+    // })
   },
   checkRoll () {
-    // return new Promise((resolve, reject) => {
-    //   ajax({
-    //     url: `${apiAddr.checkRoll}`,
-    //     method: 'GET'
-    //   }).then(res => {
-    //     if(res.state) {
-    //       resolve('-1')
-    //     } else {
-    //       switch (res.msg) {
-    //         case 'already pooled' :
-    //           // eslint-disable-next-line
-    //           (res.prize == '-1') && (res.prize = '0' );
-    //           resolve(res.prize)
-    //           break;
-    //         case 'vote first' :
-    //           resolve('-2')
-    //           break;
-    //         default :
-    //           break;
-    //       }
-    //     }
-    //   }).catch(() => {
-    //     reject(0)
-    //   })
-    // })
     return new Promise((resolve, reject) => {
-      setTimeout(function () {
-        resolve('-1')
-      }, 500)
+      ajax({
+        url: `${apiAddr.checkRoll}`,
+        method: 'GET'
+      }).then(res => {
+        if(res.state) {
+          resolve('-1')
+        } else {
+          switch (res.msg) {
+            case 'already pooled' :
+              // eslint-disable-next-line
+              (res.prize == '-1') && (res.prize = '0' );
+              resolve(res.prize)
+              break;
+            case 'vote first' :
+              resolve('-2')
+              break;
+            default :
+              break;
+          }
+        }
+      }).catch(() => {
+        reject(0)
+      })
     })
+    // return new Promise((resolve, reject) => {
+    //   setTimeout(function () {
+    //     resolve('-1')
+    //   }, 500)
+    // })
   },
   fillForm (data) {
     return new Promise((resolve, reject) => {
