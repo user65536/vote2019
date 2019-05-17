@@ -5,7 +5,6 @@ import LazyLoad from "./LazyLoad"
 import loadingSrc from '../static/load.png'
 import '../styles/ProjectCard.styl'
 
-import page from '../utils/page'
 
 class ProjectCard extends Component {
 
@@ -20,7 +19,10 @@ class ProjectCard extends Component {
           </div>
         </div>
         <div className="project-info">
-          <div className="title">{page.getStrLength(name) > 20 ? name.slice(0, 19) + '...' : name}</div>
+          <div className="title point-2">
+          {/* {page.getStrLength(name) > 20 ? name.slice(0, 19) + '...' : name} */}
+          {name}
+          </div>
           <div className="number-wrap">
             <div className="number number-vote">
               <span className="iconfont icon-toupiao"></span>
