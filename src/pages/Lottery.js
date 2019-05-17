@@ -34,7 +34,6 @@ class Lottery extends Component {
 
   componentDidMount() {
     vote.checkRoll().then(prize => {
-      console.log(prize)
       this.setState({
         prize
       })
@@ -51,7 +50,6 @@ class Lottery extends Component {
       <>
         <Nav></Nav>
         <div className="lottery-wrapper">
-          <div className="info"></div>
           <div className="turntable-wrap">
             <div className="pointer"></div>
             <div 
@@ -79,10 +77,11 @@ class Lottery extends Component {
               </div> 
             )
           }
+          <div className="info">如获奖请前往咨询台领奖</div>
           {
             this.state.showForm ? (
               <div className="form-wrap">
-                <div className="info">请填写邮寄信息或现场领奖</div>
+                <div className="info">请前往咨询台领奖</div>
                 <ul className="form">
                   <li className="form-item">
                     <label className="item-name">姓名</label>
@@ -134,13 +133,6 @@ class Lottery extends Component {
       this.setState({
         prize
       })
-      if(prize > 0) {
-        setTimeout(() => {
-          this.setState({
-            showForm: true
-          })
-        }, 2000)
-      }
     }).catch( state => {
       if(state === 0) { //没登录
         page.showAlert('请登录或重试')
