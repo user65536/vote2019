@@ -21,5 +21,16 @@ export default {
     } else {
       return null
     }
+  },
+  getScrollTop () {
+    let top = sessionStorage.getItem('scrollTop')
+    if(top) {
+      return parseInt(top)
+    } else {
+      return false
+    }
+  },
+  setScrollTop(top) {
+    sessionStorage.setItem('scrollTop', top)
   }
 }
