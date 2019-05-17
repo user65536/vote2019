@@ -1,5 +1,5 @@
 import ajax from './_ajax'
-import img from '../static/bupt5.jpg'
+import img from '../static/load.png'
 import config from './config.js'
 
 
@@ -19,7 +19,7 @@ const apiAddr = {
   getTotalVote: '/api/totalVote',
   getImage: '/image',
   search: '/api/searchProjectList',
-  activate: '/api/activate', // uid 932DFBFE 2469264382
+  activate: '/api/activate', 
   voteRecordTop5: '/api/voteRecordTop5',
   fillUpDetail: '/api/fillUpDetail',
   getLottery: '/api/getLottery',
@@ -111,7 +111,6 @@ export default {
         if(res.list) {
           res.list.forEach((project, index) => {
             project.imgSrc = project.img ? `${apiAddr.getImage}/${project.id}/${project.img}` : img
-            // project.imgSrc = `${apiAddr.getImage}/${project.id}/${project.img}`            
           })
           resolve(res.list)
         } else {
@@ -128,7 +127,6 @@ export default {
       }).then((res) => {
         if(res.state) {
           res.list.imgSrc =  res.list.img ? `${apiAddr.getImage}/${res.list.id}/${res.list.img}` : img
-          // res.list.imgSrc = `${apiAddr.getImage}/${res.list.id}/${res.list.img}`          
           resolve(res.list)
         } else {
           reject("404")
@@ -139,16 +137,6 @@ export default {
     })
   },
   getCaptcha () {
-    // return new Promise((resolve, reject) => {
-    //   ajax({
-    //     url: apiAddr.getCaptcha,
-    //     method: 'GET'
-    //   }).then((res) => {
-    //     resolve(res)
-    //   }).catch( () => {
-    //     reject("验证码获取失败")
-    //   })
-    // })
     if(config.mock) {
       return Promise.resolve(`https://www.meansky.cn/picture/code.png`)
     } else {
@@ -167,8 +155,10 @@ export default {
       }).then((res) => {
         let result = {
           "expired": "激活时间超时",
-          "no more vote": "无票可投",
+          "no more vote": "票数已用完",
           "wrong code": "验证码错误",
+          "swipe card first": "请先刷卡激活",
+          "repeat": "投过这个了~"
         }
         if(res.state) {
           resolve("投票成功")
