@@ -33,6 +33,18 @@ class Gallery extends Component {
   }
  }
 
+ componentWillUnmount () {
+  let top = document.documentElement.scrollTop
+  storage.setScrollTop(top)
+ }
+
+ componentDidUpdate () {
+  let top = storage.getScrollTop();
+  if(top) {
+    window.scrollTo(0, top)
+  }
+ }
+
   render () {
     return (
       <div className="wrapper-gallery">
@@ -65,6 +77,7 @@ class Gallery extends Component {
   }
   listRefreshProxy = {
     changeGroup (id) {
+      storage.setScrollTop(0)
       return new Promise((resolve, reject) => {
         vote.getProjectList(id).then((projects) => {
           storage.setProjectList({
@@ -79,6 +92,7 @@ class Gallery extends Component {
       })
     },
     search (word) {
+      storage.setScrollTop(0)
       return new Promise((resolve, reject) => {
         if(word.trim()) {
           vote.search(word).then(list => {
