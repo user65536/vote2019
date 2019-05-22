@@ -7,16 +7,17 @@ import page from '../utils/page'
 
 import '../styles/lottery.styl'
 
-const random = (Math.random()*2-1)*30;
+const random = (Math.random()*2-1)*25;
 
 const angle = {
   '-2': -1800,
   '-1': -1800,
-  '0': 144 + random,
-  '1': 72 + random,
+  '0': 120 + random,
+  '1': 60 + random,
   '2': random,
-  '3': -72 + random,
-  '4': -144 + random
+  '3': -60 + random,
+  '4': -120 + random,
+  '5': -180 + random
 }
 
 
@@ -28,7 +29,7 @@ class Lottery extends Component {
 
   state = {
     lotteryLock: false,
-    prize: '-1', // -2未投票 -1已投票未抽奖 0 谢谢 1-4 奖
+    prize: '-1', // -2未投票 -1已投票未抽奖 0 谢谢 1-5 奖
     showForm: false
   }
 

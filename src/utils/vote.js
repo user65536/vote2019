@@ -270,9 +270,7 @@ export default {
           (res.prize == '-1') && (res.prize = '0' );
           resolve(res.prize)
         } else {
-          if(res.msg === 'already pooled') {
-            reject(res.msg)
-          }
+          reject(res.msg)
         }
       }).catch(() => {
         reject(0)
@@ -280,7 +278,7 @@ export default {
     })
     // return new Promise((resolve, reject) => {
     //   setTimeout(function () {
-    //     resolve(1)
+    //     resolve(5)
     //   }, 500)
     // })
   },
